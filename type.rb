@@ -34,7 +34,7 @@ mrb_raylib_#{lower_name}_initialize(mrb_state *mrb, mrb_value self)
     return self;
 }
 
-#{@fields.map { |e| e.impl_header }.join("\n")}
+#{@fields.map { |e| e.impl_header(self) }.join("\n")}
     EOS
   end
 

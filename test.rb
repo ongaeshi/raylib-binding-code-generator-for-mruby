@@ -97,9 +97,81 @@ mrb_raylib_color_initialize(mrb_state *mrb, mrb_value self)
     return self;
 }
 
+static mrb_value 
+mrb_raylib_color_r(mrb_state *mrb, mrb_value self)
+{
+    Color *obj = DATA_PTR(self);
+    return mrb_fixnum_value(obj->r);
+}
 
+static mrb_value 
+mrb_raylib_color_set_r(mrb_state *mrb, mrb_value self)
+{
+    mrb_int value;
+    mrb_get_args(mrb, "i", &value);
 
+    Color *obj = DATA_PTR(self);
+    obj->r = value;
 
+    return mrb_fixnum_value(value);
+}
+
+static mrb_value 
+mrb_raylib_color_g(mrb_state *mrb, mrb_value self)
+{
+    Color *obj = DATA_PTR(self);
+    return mrb_fixnum_value(obj->g);
+}
+
+static mrb_value 
+mrb_raylib_color_set_g(mrb_state *mrb, mrb_value self)
+{
+    mrb_int value;
+    mrb_get_args(mrb, "i", &value);
+
+    Color *obj = DATA_PTR(self);
+    obj->g = value;
+
+    return mrb_fixnum_value(value);
+}
+
+static mrb_value 
+mrb_raylib_color_b(mrb_state *mrb, mrb_value self)
+{
+    Color *obj = DATA_PTR(self);
+    return mrb_fixnum_value(obj->b);
+}
+
+static mrb_value 
+mrb_raylib_color_set_b(mrb_state *mrb, mrb_value self)
+{
+    mrb_int value;
+    mrb_get_args(mrb, "i", &value);
+
+    Color *obj = DATA_PTR(self);
+    obj->b = value;
+
+    return mrb_fixnum_value(value);
+}
+
+static mrb_value 
+mrb_raylib_color_a(mrb_state *mrb, mrb_value self)
+{
+    Color *obj = DATA_PTR(self);
+    return mrb_fixnum_value(obj->a);
+}
+
+static mrb_value 
+mrb_raylib_color_set_a(mrb_state *mrb, mrb_value self)
+{
+    mrb_int value;
+    mrb_get_args(mrb, "i", &value);
+
+    Color *obj = DATA_PTR(self);
+    obj->a = value;
+
+    return mrb_fixnum_value(value);
+}
 
 
 
