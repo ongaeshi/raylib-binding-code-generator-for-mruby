@@ -12,19 +12,19 @@ static mrb_value
 mrb_raylib_#{declare_type.lower_name}_#{name}(mrb_state *mrb, mrb_value self)
 {
     #{declare_type.name} *obj = DATA_PTR(self);
-    return mrb_fixnum_value(obj->#{name});
+    return #{to_mrb_value("obj->#{name}")};
 }
 
 static mrb_value 
 mrb_raylib_#{declare_type.lower_name}_set_#{name}(mrb_state *mrb, mrb_value self)
 {
     mrb_int value;
-    mrb_get_args(mrb, "i", &value);
+    mrb_get_args(mrb, "#{get_args_parameter}", &value);
 
     #{declare_type.name} *obj = DATA_PTR(self);
     obj->#{name} = value;
 
-    return mrb_fixnum_value(value);
+    return #{to_mrb_value("value")};
 }
     EOS
   end
@@ -36,5 +36,23 @@ mrb_raylib_#{declare_type.lower_name}_set_#{name}(mrb_state *mrb, mrb_value self
     EOS
 
     s.chomp
+  end
+
+  def get_args_parameter
+    case type
+    when "unsigned char"
+      "i"
+    else
+      raise
+    end
+  end
+  
+  def to_mrb_value(value)
+    case type
+    when "unsigned char"
+      "mrb_fixnum_value(#{value})"
+    else
+      raise
+    end
   end
 end
