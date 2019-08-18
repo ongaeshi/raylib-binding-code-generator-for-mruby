@@ -40,7 +40,7 @@ mrb_raylib_#{declare_type.lower_name}_set_#{name}(mrb_state *mrb, mrb_value self
 
   def get_args_parameter
     case type
-    when "unsigned char"
+    when "int", "unsigned char"
       "i"
     when "float"
       "f"
@@ -51,7 +51,7 @@ mrb_raylib_#{declare_type.lower_name}_set_#{name}(mrb_state *mrb, mrb_value self
   
   def to_mrb_value(value)
     case type
-    when "unsigned char"
+    when "int", "unsigned char"
       "mrb_fixnum_value(#{value})"
     when "float"
       "mrb_float_value(mrb, #{value})"
