@@ -1,4 +1,5 @@
 require_relative 'type'
+require_relative 'function'
 
 class Parser
   def initialize(src)
