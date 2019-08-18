@@ -222,3 +222,12 @@ class FieldTest < Test::Unit::TestCase
   end
 end
 
+class FunctionTest < Test::Unit::TestCase
+  def test_close_window
+    function = Function.new("void CloseWindow(void);")
+    assert_equal "CloseWindow", function.c_name
+    assert_equal "close_window", function.ruby_name
+    assert_equal "void", function.ret_type
+    assert_equal 0, function.arguments.count
+  end
+end
