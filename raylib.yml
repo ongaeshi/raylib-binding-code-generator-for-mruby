@@ -1,10 +1,37 @@
-- name: struct Color
-  field:
-  - unsigned char r;
-  - unsigned char g;
-  - unsigned char b;
-  - unsigned char a;
-- name: struct Vector2
-- name: struct Vector3
-- name: struct Camera
+- name: struct Vector2         # Vector2 type
+- name: struct Vector3         # Vector3 type
+- name: struct Vector4         # Vector4 type
+- name: struct Quaternion      # Quaternion type
+- name: struct Matrix          # Matrix type (OpenGL style 4x4)
+- name: struct Color           # Color type, RGBA (32bit)
+- name: struct Rectangle       # Rectangle type
 
+- name: struct Image           # Image type (multiple pixel formats supported)
+                               # NOTE: Data stored in CPU memory (RAM)               
+- name: struct Texture         # Texture type (multiple internal formats supported)
+                               # NOTE: Data stored in GPU memory (VRAM)
+- name: struct RenderTexture   # RenderTexture type, for texture rendering
+- name: struct NPatchInfo      # N-Patch layout info
+- name: struct CharInfo        # Font character info
+- name: struct Font            # Font type, includes texture and chars data
+    
+- name: struct Camera          # Camera type, defines 3d camera position/orientation
+- name: struct Camera2D        # Camera2D type, defines a 2d camera
+- name: struct Mesh            # Vertex data definning a mesh
+- name: struct Shader          # Shader type (generic shader)
+- name: struct MaterialMap     # Material texture map
+- name: struct Material        # Material type
+- name: struct Model           # Basic 3d Model type
+- name: struct Transform       # Transformation (used for bones)
+- name: struct BoneInfo        # Bone information
+- name: struct ModelAnimation  # Model animation data (bones and frames)
+- name: struct Ray             # Ray type (useful for raycast)
+- name: struct RayHitInfo      # Raycast hit information
+- name: struct BoundingBox     # Bounding box type for 3d mesh
+    
+- name: struct Wave            # Wave type, defines audio wave data
+- name: struct Sound           # Basic Sound source and buffer
+- name: struct Music           # Music type (file streaming from memory)
+- name: struct AudioStream     # Raw audio stream type
+    
+- name: struct VrDeviceInfo    # VR device parameters
