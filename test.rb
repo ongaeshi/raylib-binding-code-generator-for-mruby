@@ -29,7 +29,7 @@ MRB_RAYLIB_API void mrb_raylib_module_init(mrb_state *mrb);
 
 #endif // MRB_RAYLIB__H
 EOS
-    assert_equal(expected, parser.impl_content)
+    assert_equal(expected, parser.header_content)
   end
 
   def test_empty_string
