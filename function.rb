@@ -1,3 +1,5 @@
+require_relative "caseninja"
+
 class Function
   attr_reader :c_name, :ruby_name
   attr_reader :ret_type
@@ -7,7 +9,7 @@ class Function
     ret_type, c_name, arguments = src.scan(/([\w ]+?)(\w+)\((.*)\)/)[0]
 
     @c_name = c_name
-    @ruby_name = "close_window"
+    @ruby_name = Caseninja.to_snake(c_name)
     @ret_type = parse_ret_type(ret_type)
     @arguments = parse_arguments(arguments)
   end
@@ -18,7 +20,7 @@ class Function
 
   def parse_arguments(arguments)
     arguments = arguments.strip
-    
+
     return [] if (arguments == "void")
     
     raise
