@@ -64,12 +64,12 @@ void mrb_raylib_module_init(mrb_state *mrb)
   def test_color_struct
     parser = Parser.new(<<-EOS
 - name: struct Color
-  field:
+  fields:
     - unsigned char r;
     - unsigned char g;
     - unsigned char b;
     - unsigned char a;
-EOS
+  EOS
     )
 
     expected = <<-EOS
