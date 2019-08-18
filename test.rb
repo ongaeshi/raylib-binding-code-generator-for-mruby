@@ -37,6 +37,11 @@ MRB_RAYLIB_API void mrb_raylib_module_init(mrb_state *mrb);
     parser = Parser.new("")
 
     expected = <<EOS
+void mrb_raylib_module_init(mrb_state *mrb)
+{
+  	struct RClass *mod_raylib = mrb_define_module(mrb, "Raylib");
+  	struct RClass *raylib_error_cls = mrb_define_class_under(mrb, mod_raylib, "RaylibError", mrb->eStandardError_class);
+}
 EOS
 
     assert_equal(expected, parser.impl_content)
