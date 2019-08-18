@@ -67,112 +67,112 @@
     - int mipmaps;             # Mipmap levels, 1 by default
     - int format;              # Data format (PixelFormat type)
 
-# Texture type (multiple internal formats supported)
-# NOTE: Data stored in GPU memory (VRAM)
-- name: struct Texture2D
-  fields:
-    - unsigned int id;         # OpenGL texture id
-    - int width;               # Texture base width
-    - int height;              # Texture base height
-    - int mipmaps;             # Mipmap levels, 1 by default
-    - int format;              # Data format (PixelFormat type)
+# # Texture type (multiple internal formats supported)
+# # NOTE: Data stored in GPU memory (VRAM)
+# - name: struct Texture2D
+#   fields:
+#     - unsigned int id;         # OpenGL texture id
+#     - int width;               # Texture base width
+#     - int height;              # Texture base height
+#     - int mipmaps;             # Mipmap levels, 1 by default
+#     - int format;              # Data format (PixelFormat type)
 
-# Texture type, same as Texture2D
-# - name: typedef Texture2D Texture;
+# # Texture type, same as Texture2D
+# # - name: typedef Texture2D Texture;
 
-# TextureCubemap type, actually, same as Texture2D
-# - name: typedef Texture2D TextureCubemap;
+# # TextureCubemap type, actually, same as Texture2D
+# # - name: typedef Texture2D TextureCubemap;
 
-# RenderTexture type, for texture rendering
-- name: struct RenderTexture2D
-  fields:
-    - unsigned int id;         # OpenGL Framebuffer Object (FBO) id
-    - Texture2D texture;       # Color buffer attachment texture
-    - Texture2D depth;         # Depth buffer attachment texture
-    - bool depthTexture;       # Track if depth attachment is a texture or renderbuffer
+# # RenderTexture type, for texture rendering
+# - name: struct RenderTexture2D
+#   fields:
+#     - unsigned int id;         # OpenGL Framebuffer Object (FBO) id
+#     - Texture2D texture;       # Color buffer attachment texture
+#     - Texture2D depth;         # Depth buffer attachment texture
+#     - bool depthTexture;       # Track if depth attachment is a texture or renderbuffer
 
-# RenderTexture type, same as RenderTexture2D
-# - name: typedef RenderTexture2D RenderTexture;
+# # RenderTexture type, same as RenderTexture2D
+# # - name: typedef RenderTexture2D RenderTexture;
 
-# N-Patch layout info
-- name: struct NPatchInfo
-  fields:
-    - Rectangle sourceRec;   # Region in the texture
-    - int left;              # left border offset
-    - int top;               # top border offset
-    - int right;             # right border offset
-    - int bottom;            # bottom border offset
-    - int type;              # layout of the n-patch: 3x3, 1x3 or 3x1
+# # N-Patch layout info
+# - name: struct NPatchInfo
+#   fields:
+#     - Rectangle sourceRec;   # Region in the texture
+#     - int left;              # left border offset
+#     - int top;               # top border offset
+#     - int right;             # right border offset
+#     - int bottom;            # bottom border offset
+#     - int type;              # layout of the n-patch: 3x3, 1x3 or 3x1
 
-# Font character info
-- name: struct CharInfo
-  fields:
-    - int value;              # Character value (Unicode)
-    - Rectangle rec;          # Character rectangle in sprite font
-    - int offsetX;            # Character offset X when drawing
-    - int offsetY;            # Character offset Y when drawing
-    - int advanceX;           # Character advance position X
-    # - unsigned char *data;    # Character pixel data (grayscale)
+# # Font character info
+# - name: struct CharInfo
+#   fields:
+#     - int value;              # Character value (Unicode)
+#     - Rectangle rec;          # Character rectangle in sprite font
+#     - int offsetX;            # Character offset X when drawing
+#     - int offsetY;            # Character offset Y when drawing
+#     - int advanceX;           # Character advance position X
+#     # - unsigned char *data;    # Character pixel data (grayscale)
 
-# Font type, includes texture and chars data
-- name: struct Font            
-  fields:
-    - Texture2D texture;      # Font texture
-    - int baseSize;           # Base size (default chars height)
-    - int charsCount;         # Number of characters
-    # - CharInfo *chars;        # Characters info data
+# # Font type, includes texture and chars data
+# - name: struct Font            
+#   fields:
+#     - Texture2D texture;      # Font texture
+#     - int baseSize;           # Base size (default chars height)
+#     - int charsCount;         # Number of characters
+#     # - CharInfo *chars;        # Characters info data
     
-# Camera type, defines 3d camera position/orientation
-- name: struct Camera3D
-  fields:
-    - Vector3 position;       # Camera position
-    - Vector3 target;         # Camera target it looks-at
-    - Vector3 up;             # Camera up vector (rotation over its axis)
-    - float fovy;             # Camera field-of-view apperture in Y (degrees) in perspective, used as near plane width in orthographic
-    - int type;               # Camera type, defines projection type: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
+# # Camera type, defines 3d camera position/orientation
+# - name: struct Camera3D
+#   fields:
+#     - Vector3 position;       # Camera position
+#     - Vector3 target;         # Camera target it looks-at
+#     - Vector3 up;             # Camera up vector (rotation over its axis)
+#     - float fovy;             # Camera field-of-view apperture in Y (degrees) in perspective, used as near plane width in orthographic
+#     - int type;               # Camera type, defines projection type: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
 
-# - name: typedef Camera3D Camera;    # Camera type fallback, defaults to Camera3D
+# # - name: typedef Camera3D Camera;    # Camera type fallback, defaults to Camera3D
 
-# Camera2D type, defines a 2d camera
-- name: struct Camera2D
-  fields:
-    - Vector2 offset;         # Camera offset (displacement from target)
-    - Vector2 target;         # Camera target (rotation and zoom origin)
-    - float rotation;         # Camera rotation in degrees
-    - float zoom;             # Camera zoom (scaling), should be 1.0f by default
+# # Camera2D type, defines a 2d camera
+# - name: struct Camera2D
+#   fields:
+#     - Vector2 offset;         # Camera offset (displacement from target)
+#     - Vector2 target;         # Camera target (rotation and zoom origin)
+#     - float rotation;         # Camera rotation in degrees
+#     - float zoom;             # Camera zoom (scaling), should be 1.0f by default
 
-- name: struct Mesh            # Vertex data definning a mesh
-- name: struct Shader          # Shader type (generic shader)
-- name: struct MaterialMap     # Material texture map
-- name: struct Material        # Material type
-- name: struct Model           # Basic 3d Model type
-- name: struct Transform       # Transformation (used for bones)
-- name: struct BoneInfo        # Bone information
-- name: struct ModelAnimation  # Model animation data (bones and frames)
+# - name: struct Mesh            # Vertex data definning a mesh
+# - name: struct Shader          # Shader type (generic shader)
+# - name: struct MaterialMap     # Material texture map
+# - name: struct Material        # Material type
+# - name: struct Model           # Basic 3d Model type
+# - name: struct Transform       # Transformation (used for bones)
+# - name: struct BoneInfo        # Bone information
+# - name: struct ModelAnimation  # Model animation data (bones and frames)
 
-# Ray type (useful for raycast)
-- name: struct Ray
-  fields:
-    - Vector3 position;        # Ray position (origin)
-    - Vector3 direction;       # Ray direction
+# # Ray type (useful for raycast)
+# - name: struct Ray
+#   fields:
+#     - Vector3 position;        # Ray position (origin)
+#     - Vector3 direction;       # Ray direction
 
-# Raycast hit information
-- name: struct RayHitInfo      
-  fields:
-    - bool hit;                # Did the ray hit something?
-    - float distance;          # Distance to nearest hit
-    - Vector3 position;        # Position of nearest hit
-    - Vector3 normal;          # Surface normal of hit
+# # Raycast hit information
+# - name: struct RayHitInfo      
+#   fields:
+#     - bool hit;                # Did the ray hit something?
+#     - float distance;          # Distance to nearest hit
+#     - Vector3 position;        # Position of nearest hit
+#     - Vector3 normal;          # Surface normal of hit
 
-# Bounding box type for 3d mesh
-- name: struct BoundingBox     
-  fields:
-    - Vector3 min;             # Minimum vertex box-corner
-    - Vector3 max;             # Maximum vertex box-corner
+# # Bounding box type for 3d mesh
+# - name: struct BoundingBox     
+#   fields:
+#     - Vector3 min;             # Minimum vertex box-corner
+#     - Vector3 max;             # Maximum vertex box-corner
     
-- name: struct Wave            # Wave type, defines audio wave data
-- name: struct Sound           # Basic Sound source and buffer
-- name: struct Music           # Music type (file streaming from memory)
-- name: struct AudioStream     # Raw audio stream type
+# - name: struct Wave            # Wave type, defines audio wave data
+# - name: struct Sound           # Basic Sound source and buffer
+# - name: struct Music           # Music type (file streaming from memory)
+# - name: struct AudioStream     # Raw audio stream type
     
-- name: struct VrDeviceInfo    # VR device parameters
+# - name: struct VrDeviceInfo    # VR device parameters

@@ -18,7 +18,7 @@ mrb_raylib_#{declare_type.lower_name}_#{name}(mrb_state *mrb, mrb_value self)
 static mrb_value 
 mrb_raylib_#{declare_type.lower_name}_set_#{name}(mrb_state *mrb, mrb_value self)
 {
-    mrb_int value;
+    #{to_mrb_type} value;
     mrb_get_args(mrb, "#{get_args_parameter}", &value);
 
     #{declare_type.name} *obj = DATA_PTR(self);
@@ -48,7 +48,18 @@ mrb_raylib_#{declare_type.lower_name}_set_#{name}(mrb_state *mrb, mrb_value self
       raise
     end
   end
-  
+
+  def to_mrb_type
+    case type
+    when "int", "unsigned char"
+      "mrb_int"
+    when "float"
+      "mrb_float"
+    else
+      raise type
+    end
+  end
+
   def to_mrb_value(value)
     case type
     when "int", "unsigned char"
