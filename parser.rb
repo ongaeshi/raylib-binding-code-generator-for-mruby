@@ -2,12 +2,10 @@ require_relative 'type'
 
 class Parser
   def initialize(src)
-    @yaml = YAML.load(src)
+    @yaml = YAML.load(src) || []
 
-    @elems = []
-
-    if @yaml
-      @elems << Type.new("Color")
+    @elems = @yaml.map do |e|
+      Type.new("Color")
     end
   end
 
