@@ -5,8 +5,18 @@ class Parser
     @yaml = YAML.load(src) || []
 
     @elems = @yaml.map do |e|
-      Type.new("Color")
+      case e["name"]
+      when /\Astruct/
+        parse_type(e)
+      else
+        raise
+      end
     end
+  end
+
+  def parse_type(elem)
+    name = elem["name"].split(" ")[1]
+    Type.new(name)
   end
 
   def header_content
