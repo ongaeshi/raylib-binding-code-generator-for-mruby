@@ -22,7 +22,9 @@ class Function
     arguments = arguments.strip
 
     return [] if (arguments == "void")
-    
-    raise
+
+    arguments.split(",").map do |e|
+      ""
+    end
   end
 end

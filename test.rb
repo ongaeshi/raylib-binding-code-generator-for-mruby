@@ -236,6 +236,6 @@ class FunctionTest < Test::Unit::TestCase
     assert_equal "InitWindow", function.c_name
     assert_equal "init_window", function.ruby_name
     assert_equal "void", function.ret_type
-    assert_equal 0, function.arguments.count
+    assert_equal 3, function.arguments.count
   end
 end
