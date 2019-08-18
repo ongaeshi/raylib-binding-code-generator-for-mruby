@@ -112,10 +112,14 @@ void mrb_raylib_module_init(mrb_state *mrb)
         struct RClass *cls = mrb_define_class_under(mrb, mod_raylib, "Color", mrb->object_class);
         MRB_SET_INSTANCE_TT(cls, MRB_TT_DATA);
         mrb_define_method(mrb, cls, "initialize", mrb_raylib_color_initialize, MRB_ARGS_NONE());
-
-
-
-
+        mrb_define_method(mrb, cls, "r", mrb_raylib_color_r, MRB_ARGS_NONE());
+        mrb_define_method(mrb, cls, "r=", mrb_raylib_color_set_r, MRB_ARGS_REQ(1));
+        mrb_define_method(mrb, cls, "g", mrb_raylib_color_g, MRB_ARGS_NONE());
+        mrb_define_method(mrb, cls, "g=", mrb_raylib_color_set_g, MRB_ARGS_REQ(1));
+        mrb_define_method(mrb, cls, "b", mrb_raylib_color_b, MRB_ARGS_NONE());
+        mrb_define_method(mrb, cls, "b=", mrb_raylib_color_set_b, MRB_ARGS_REQ(1));
+        mrb_define_method(mrb, cls, "a", mrb_raylib_color_a, MRB_ARGS_NONE());
+        mrb_define_method(mrb, cls, "a=", mrb_raylib_color_set_a, MRB_ARGS_REQ(1));
     }
 
 

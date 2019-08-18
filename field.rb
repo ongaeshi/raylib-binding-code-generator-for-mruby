@@ -10,7 +10,12 @@ class Field
     ""
   end
 
-  def impl_content
-    ""
+  def impl_content(declare_type)
+    s = <<-EOS
+        mrb_define_method(mrb, cls, \"#{name}\", mrb_raylib_#{declare_type}_#{name}, MRB_ARGS_NONE());
+        mrb_define_method(mrb, cls, \"#{name}=\", mrb_raylib_#{declare_type}_set_#{name}, MRB_ARGS_REQ(1));
+    EOS
+
+    s.chomp
   end
 end
