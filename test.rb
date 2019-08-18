@@ -58,8 +58,13 @@ EOS
 
   def test_color_struct
     parser = Parser.new(<<-EOS
-struct Color
-    EOS
+- name: struct Color
+  field:
+    - unsigned char r;
+    - unsigned char g;
+    - unsigned char b;
+    - unsigned char a;
+EOS
     )
 
     expected = <<EOS

@@ -1,5 +1,9 @@
+require 'yaml'
+
 class Parser
   def initialize(src)
+    @yaml = YAML.load(src)
+    p @yaml
   end
 
   def header_content
