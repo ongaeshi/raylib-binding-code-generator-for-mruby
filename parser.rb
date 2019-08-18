@@ -49,24 +49,16 @@ MRB_RAYLIB_API void mrb_raylib_module_init(mrb_state *mrb);
 #include <raylib.h>
 #include <string.h>
 
-#{f}
+#{@elems.map { |e| e.impl_header }.join("\n")}
 
 void mrb_raylib_module_init(mrb_state *mrb)
 {
     struct RClass *mod_raylib = mrb_define_module(mrb, "Raylib");
     struct RClass *raylib_error_cls = mrb_define_class_under(mrb, mod_raylib, "RaylibError", mrb->eStandardError_class);
 
-#{f2}
+#{@elems.map { |e| e.impl_content }.join("\n")}
 
 }
     EOS
-  end
-
-  def f
-    @elems.map { |e| e.impl_header }.join("\n")
-  end
-
-  def f2
-    @elems.map { |e| e.impl_content }.join("\n")
   end
 end
