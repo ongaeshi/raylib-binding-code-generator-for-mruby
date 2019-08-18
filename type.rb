@@ -1,9 +1,20 @@
+require_relative 'field'
+
 class Type
   attr_reader :name, :lower_name
+  attr_reader :fields
 
-  def initialize(name)
+  def initialize(name, fields)
     @name = name
     @lower_name = name.downcase
+    @fields = (fields || []).map do |e|
+      parse_field(e)
+    end
+  end
+
+  def parse_field(src)
+    type, name = src.scan(/([\w ]+) (\w+);/)[0]
+    Field.new(type, name)
   end
 
   def impl_header
@@ -35,4 +46,3 @@ mrb_raylib_#{lower_name}_initialize(mrb_state *mrb, mrb_value self)
     EOS
   end
 end
-

@@ -116,3 +116,14 @@ void mrb_raylib_module_init(mrb_state *mrb)
     assert_equal(expected, parser.impl_content)
   end
 end
+
+class TypeTest < Test::Unit::TestCase
+  def test_color
+    t = Type.new("Color", ["unsigned char r;", "unsigned char g;", "unsigned char b;", "unsigned char a;"])
+    assert_equal "Color", t.name
+    assert_equal "color", t.lower_name
+    assert_equal 4, t.fields.count
+    assert_equal "unsigned char", t.fields[0].type
+    assert_equal "r", t.fields[0].name
+  end
+end 

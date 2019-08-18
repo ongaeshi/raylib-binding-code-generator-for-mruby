@@ -16,7 +16,7 @@ class Parser
 
   def parse_type(elem)
     name = elem["name"].split(" ")[1]
-    Type.new(name)
+    Type.new(name, elem["fields"])
   end
 
   def header_content
