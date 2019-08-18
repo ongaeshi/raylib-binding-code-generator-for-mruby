@@ -1,11 +1,11 @@
-require_relative "raylib-binding-code-generator-for-mruby"
-require "test/unit"
+require_relative 'raylib-binding-code-generator-for-mruby'
+require 'test/unit'
 
 class ParserTest < Test::Unit::TestCase
   def test_header_content
     parser = Parser.new("")
 
-    expected = <<EOS
+    expected = <<-EOS
 #ifndef MRB_RAYLIB__H
 #define MRB_RAYLIB__H
 
@@ -28,7 +28,8 @@ MRB_RAYLIB_API void mrb_raylib_module_init(mrb_state *mrb);
 #endif
 
 #endif // MRB_RAYLIB__H
-EOS
+    EOS
+
     assert_equal(expected, parser.header_content)
   end
 
@@ -37,6 +38,7 @@ EOS
 
     expected = <<EOS
 EOS
+
     assert_equal(expected, parser.impl_content)
   end
 end

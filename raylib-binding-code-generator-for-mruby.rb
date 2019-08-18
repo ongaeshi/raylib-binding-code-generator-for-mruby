@@ -3,7 +3,7 @@ class Parser
   end
 
   def header_content
-    <<EOS
+    <<-EOS
 #ifndef MRB_RAYLIB__H
 #define MRB_RAYLIB__H
 
@@ -26,10 +26,11 @@ MRB_RAYLIB_API void mrb_raylib_module_init(mrb_state *mrb);
 #endif
 
 #endif // MRB_RAYLIB__H
-EOS
+    EOS
   end
 
   def impl_content
-    ""
+    <<-EOS
+    EOS
   end
 end
