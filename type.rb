@@ -33,6 +33,8 @@ mrb_raylib_#{lower_name}_initialize(mrb_state *mrb, mrb_value self)
     DATA_PTR(self) = obj;
     return self;
 }
+
+#{@fields.map { |e| e.impl_header }.join("\n")}
     EOS
   end
 
@@ -42,6 +44,7 @@ mrb_raylib_#{lower_name}_initialize(mrb_state *mrb, mrb_value self)
         struct RClass *cls = mrb_define_class_under(mrb, mod_raylib, "#{name}", mrb->object_class);
         MRB_SET_INSTANCE_TT(cls, MRB_TT_DATA);
         mrb_define_method(mrb, cls, "initialize", mrb_raylib_#{lower_name}_initialize, MRB_ARGS_NONE());
+#{@fields.map { |e| e.impl_content }.join("\n")}
     }
     EOS
   end

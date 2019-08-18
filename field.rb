@@ -5,4 +5,12 @@ class Field
     @type = type
     @name = name
   end
+
+  def impl_header
+    ""
+  end
+
+  def impl_content
+    ""
+  end
 end
