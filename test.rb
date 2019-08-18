@@ -33,7 +33,7 @@ MRB_RAYLIB_API void mrb_raylib_module_init(mrb_state *mrb);
     assert_equal(expected, parser.header_content)
   end
 
-  def ttest_empty_string
+  def test_empty_string
     parser = Parser.new("")
 
     expected = <<-EOS
@@ -46,10 +46,12 @@ MRB_RAYLIB_API void mrb_raylib_module_init(mrb_state *mrb);
 #include <raylib.h>
 #include <string.h>
 
+
 void mrb_raylib_module_init(mrb_state *mrb)
 {
     struct RClass *mod_raylib = mrb_define_module(mrb, "Raylib");
     struct RClass *raylib_error_cls = mrb_define_class_under(mrb, mod_raylib, "RaylibError", mrb->eStandardError_class);
+
 }
     EOS
 

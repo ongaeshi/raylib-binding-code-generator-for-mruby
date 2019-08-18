@@ -5,7 +5,10 @@ class Parser
     @yaml = YAML.load(src)
 
     @elems = []
-    @elems << Type.new("Color")
+
+    if @yaml
+      @elems << Type.new("Color")
+    end
   end
 
   def header_content
