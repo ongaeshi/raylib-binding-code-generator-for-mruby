@@ -23,7 +23,6 @@ mrb_raylib_color_initialize(mrb_state *mrb, mrb_value self)
 
   def impl_content
     <<-EOS
-
     {
         struct RClass *cls = mrb_define_class_under(mrb, mod_raylib, "Color", mrb->object_class);
         MRB_SET_INSTANCE_TT(cls, MRB_TT_DATA);
