@@ -212,3 +212,12 @@ class TypeTest < Test::Unit::TestCase
     assert_equal "r", t.fields[0].name
   end
 end 
+
+class FieldTest < Test::Unit::TestCase
+  def test_float_field
+    field = Field.new("float x")
+    assert_equal "f", field.get_args_parameter
+    assert_equal "mrb_float_value(mrb, value)", t.field.to_mrb_value("value")
+  end
+end
+

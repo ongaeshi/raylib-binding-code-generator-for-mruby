@@ -42,6 +42,8 @@ mrb_raylib_#{declare_type.lower_name}_set_#{name}(mrb_state *mrb, mrb_value self
     case type
     when "unsigned char"
       "i"
+    when "float"
+      "f"
     else
       raise
     end
@@ -51,8 +53,10 @@ mrb_raylib_#{declare_type.lower_name}_set_#{name}(mrb_state *mrb, mrb_value self
     case type
     when "unsigned char"
       "mrb_fixnum_value(#{value})"
+    when "float"
+      "mrb_float_value(mrb, #{value})"
     else
-      raise
+      raise type
     end
   end
 end
