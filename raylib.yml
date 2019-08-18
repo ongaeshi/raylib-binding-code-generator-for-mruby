@@ -176,3 +176,35 @@
 # - name: struct AudioStream     # Raw audio stream type
     
 # - name: struct VrDeviceInfo    # VR device parameters
+
+# ---------------------------------------------------------------------------
+# module: core
+# ---------------------------------------------------------------------------
+# Window-related functions
+- name: void InitWindow(int width, int height, const char *title);              # Initialize window and OpenGL context
+- name: bool WindowShouldClose(void);                                           # Check if KEY_ESCAPE pressed or Close icon pressed
+- name: void CloseWindow(void);                                                 # Close window and unload OpenGL context
+# - name: bool IsWindowReady(void);                                               # Check if window has been initialized successfully
+# - name: bool IsWindowMinimized(void);                                           # Check if window has been minimized (or lost focus)
+# - name: bool IsWindowResized(void);                                             # Check if window has been resized
+# - name: bool IsWindowHidden(void);                                              # Check if window is currently hidden
+# - name: void ToggleFullscreen(void);                                            # Toggle fullscreen mode (only PLATFORM_DESKTOP)
+# - name: void UnhideWindow(void);                                                # Show the window
+# - name: void HideWindow(void);                                                  # Hide the window
+# - name: void SetWindowIcon(Image image);                                        # Set icon for window (only PLATFORM_DESKTOP)
+# - name: void SetWindowTitle(const char *title);                                 # Set title for window (only PLATFORM_DESKTOP)
+# - name: void SetWindowPosition(int x, int y);                                   # Set window position on screen (only PLATFORM_DESKTOP)
+# - name: void SetWindowMonitor(int monitor);                                     # Set monitor for the current window (fullscreen mode)
+# - name: void SetWindowMinSize(int width, int height);                           # Set window minimum dimensions (for FLAG_WINDOW_RESIZABLE)
+# - name: void SetWindowSize(int width, int height);                              # Set window dimensions
+# - name: void *GetWindowHandle(void);                                            # Get native window handle
+# - name: int GetScreenWidth(void);                                               # Get current screen width
+# - name: int GetScreenHeight(void);                                              # Get current screen height
+# - name: int GetMonitorCount(void);                                              # Get number of connected monitors
+# - name: int GetMonitorWidth(int monitor);                                       # Get primary monitor width
+# - name: int GetMonitorHeight(int monitor);                                      # Get primary monitor height
+# - name: int GetMonitorPhysicalWidth(int monitor);                               # Get primary monitor physical width in millimetres
+# - name: int GetMonitorPhysicalHeight(int monitor);                              # Get primary monitor physical height in millimetres
+# - name: const char *GetMonitorName(int monitor);                                # Get the human-readable, UTF-8 encoded name of the primary monitor
+# - name: const char *GetClipboardText(void);                                     # Get clipboard text content
+# - name: void SetClipboardText(const char *text);                                # Set clipboard text content
