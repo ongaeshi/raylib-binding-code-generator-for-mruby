@@ -31,6 +31,15 @@ MRB_RAYLIB_API void mrb_raylib_module_init(mrb_state *mrb);
 
   def impl_content
     <<-EOS
+#include "mrb_raylib.h"
+
+#include <mruby/class.h>
+#include <mruby/data.h>
+#include <mruby/string.h>
+#include <mruby/value.h>
+#include <raylib.h>
+#include <string.h>
+
 void mrb_raylib_module_init(mrb_state *mrb)
 {
   	struct RClass *mod_raylib = mrb_define_module(mrb, "Raylib");

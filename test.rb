@@ -37,10 +37,66 @@ MRB_RAYLIB_API void mrb_raylib_module_init(mrb_state *mrb);
     parser = Parser.new("")
 
     expected = <<EOS
+#include "mrb_raylib.h"
+
+#include <mruby/class.h>
+#include <mruby/data.h>
+#include <mruby/string.h>
+#include <mruby/value.h>
+#include <raylib.h>
+#include <string.h>
+
 void mrb_raylib_module_init(mrb_state *mrb)
 {
   	struct RClass *mod_raylib = mrb_define_module(mrb, "Raylib");
   	struct RClass *raylib_error_cls = mrb_define_class_under(mrb, mod_raylib, "RaylibError", mrb->eStandardError_class);
+}
+EOS
+
+    assert_equal(expected, parser.impl_content)
+  end
+
+  def test_color_struct
+    parser = Parser.new(<<-EOS
+struct Color
+    EOS
+    )
+
+    expected = <<EOS
+#include "mrb_raylib.h"
+
+#include <mruby/class.h>
+#include <mruby/data.h>
+#include <mruby/string.h>
+#include <mruby/value.h>
+#include <raylib.h>
+#include <string.h>
+
+const static struct mrb_data_type mrb_raylib_color_type = { "Color", mrb_free };
+
+static mrb_value
+mrb_raylib_color_initialize(mrb_state *mrb, mrb_value self)
+{
+	Color *obj;
+
+	obj = (Color*)mrb_malloc(mrb, sizeof(Color));
+	memset(obj, 0, sizeof(Color));
+
+	DATA_TYPE(self) = &mrb_raylib_color_type;
+	DATA_PTR(self) = obj;
+	return self;
+}
+
+void mrb_raylib_module_init(mrb_state *mrb)
+{
+  	struct RClass *mod_raylib = mrb_define_module(mrb, "Raylib");
+    struct RClass *raylib_error_cls = mrb_define_class_under(mrb, mod_raylib, "RaylibError", mrb->eStandardError_class);
+
+    {
+      struct RClass *cls = mrb_define_class_under(mrb, mod_raylib, "Color", mrb->object_class);
+      MRB_SET_INSTANCE_TT(cls, MRB_TT_DATA);
+      mrb_define_method(mrb, cls, "initialize", mrb_raylib_color_initialize, MRB_ARGS_NONE());
+    }
 }
 EOS
 
