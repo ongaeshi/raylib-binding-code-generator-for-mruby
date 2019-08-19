@@ -58,7 +58,7 @@ mrb_raylib_#{ruby_name}(mrb_state *mrb, mrb_value self)
     when "void"
       "    #{c};"
     when "bool"
-      "    mrb_bool ret = mrb_bool_value(#{c});"
+      "    mrb_value ret = mrb_bool_value(#{c});"
     else
       raise ret_type
     end
