@@ -13,8 +13,7 @@ class Type
   end
 
   def parse_field(src)
-    type, name = src.scan(/([\w ]+) (\w+);/)[0]
-    Field.new(type, name)
+    Field.new(src)
   end
 
   def impl_header

@@ -215,7 +215,7 @@ end
 
 class FieldTest < Test::Unit::TestCase
   def test_float_field
-    field = Field.new("float", "x")
+    field = Field.new("float x")
     assert_equal "f", field.get_args_parameter
     assert_equal "mrb_float_value(mrb, value)", field.to_mrb_value("value")
     assert_equal "mrb_float", field.to_mrb_type

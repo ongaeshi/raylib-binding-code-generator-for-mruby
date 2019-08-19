@@ -24,7 +24,7 @@ class Function
     return [] if (arguments == "void")
 
     arguments.split(",").map do |e|
-      ""
+      Field.new(e)
     end
   end
 end

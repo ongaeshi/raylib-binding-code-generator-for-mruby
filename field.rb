@@ -1,7 +1,8 @@
 class Field
   attr_reader :type, :name
 
-  def initialize(type, name)
+  def initialize(src)
+    type, name = src.scan(/([\w ]+) (\w+);?/)[0]
     @type = type
     @name = name
   end
@@ -45,7 +46,7 @@ mrb_raylib_#{declare_type.lower_name}_set_#{name}(mrb_state *mrb, mrb_value self
     when "float"
       "f"
     else
-      raise
+      raise type
     end
   end
 
