@@ -52,15 +52,24 @@ mrb_raylib_#{ruby_name}(mrb_state *mrb, mrb_value self)
   end
 
   def call_function
-    <<-EOS.chomp
-    #{c_name}(#{arguments.map { |e| e.to_c_argument }.join(", ")});
-    EOS
+    c = "#{c_name}(#{arguments.map { |e| e.to_c_argument }.join(", ")})"
+
+    case ret_type
+    when "void"
+      "    #{c};"
+    when "bool"
+      "    mrb_bool ret = mrb_bool_value(#{c});"
+    else
+      raise ret_type
+    end
   end
 
   def return_value
-    <<-EOS.chomp
-    return self;
-    EOS
+    if ret_type == "void"
+      "    return self;"
+    else
+      "    return ret;"
+    end
   end
 
   def impl_content

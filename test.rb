@@ -293,9 +293,9 @@ mrb_raylib_window_should_close(mrb_state *mrb, mrb_value self)
 {
 
 
-    WindowShouldClose();
+    mrb_bool ret = mrb_bool_value(WindowShouldClose());
 
-    return self;
+    return ret;
 }
     EOS
 
