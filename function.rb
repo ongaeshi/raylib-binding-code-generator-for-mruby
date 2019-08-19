@@ -54,13 +54,10 @@ mrb_raylib_#{ruby_name}(mrb_state *mrb, mrb_value self)
   def call_function
     c = "#{c_name}(#{arguments.map { |e| e.to_c_argument }.join(", ")})"
 
-    case ret_type
-    when "void"
+    if ret_type == "void"
       "    #{c};"
-    when "bool"
-      "    mrb_value ret = mrb_bool_value(#{c});"
     else
-      raise ret_type
+      "    mrb_value ret = #{to_mrb_value(ret_type, c)};"
     end
   end
 
@@ -81,6 +78,19 @@ mrb_raylib_#{ruby_name}(mrb_state *mrb, mrb_value self)
       "MRB_ARGS_NONE()"
     else
       "MRB_ARGS_REQ(#{arguments.count})"
+    end
+  end
+
+  def to_mrb_value(type, value)
+    case type
+    when "int", "unsigned char"
+      "mrb_fixnum_value(#{value})"
+    when "float"
+      "mrb_float_value(mrb, #{value})"
+    when "bool"
+      "mrb_bool_value(#{value})"
+    else
+      raise type
     end
   end
 end
