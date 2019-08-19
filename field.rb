@@ -45,6 +45,8 @@ mrb_raylib_#{declare_type.lower_name}_set_#{name}(mrb_state *mrb, mrb_value self
       "i"
     when "float"
       "f"
+    when "const char*"
+      "S"
     else
       raise type
     end
@@ -56,6 +58,8 @@ mrb_raylib_#{declare_type.lower_name}_set_#{name}(mrb_state *mrb, mrb_value self
       "mrb_int"
     when "float"
       "mrb_float"
+    when "const char*"
+      "mrb_value"
     else
       raise type
     end
