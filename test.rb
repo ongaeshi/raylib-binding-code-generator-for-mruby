@@ -259,9 +259,10 @@ class FunctionTest < Test::Unit::TestCase
 
     expected = <<-EOS
 static mrb_value
-mrb_init_window(mrb_state *mrb, mrb_value self)
+mrb_raylib_init_window(mrb_state *mrb, mrb_value self)
 {
-    mrb_int width, height = 0;
+    mrb_int width;
+    mrb_int height;
     mrb_value title;
     mrb_get_args(mrb, "iiS", &width, &height, &title);
 

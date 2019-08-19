@@ -35,16 +35,33 @@ class Function
   def impl_content
     <<-EOS
 static mrb_value
-mrb_init_window(mrb_state *mrb, mrb_value self)
+mrb_raylib_#{ruby_name}(mrb_state *mrb, mrb_value self)
 {
-    mrb_int width, height = 0;
-    mrb_value title;
-    mrb_get_args(mrb, "iiS", &width, &height, &title);
+#{get_args}
 
-    InitWindow(width, height, RSTRING_PTR(title));
+#{call_function}
 
-    return self;
+#{return_value}
 }
+    EOS
+  end
+
+  def get_args
+    <<-EOS.chomp
+#{arguments.map { |e| "    #{e.to_mrb_type} #{e.name};" }.join("\n")}
+    mrb_get_args(mrb, "#{arguments.map { |e| e.get_args_parameter }.join("") }", #{arguments.map { |e| "&#{e.name}" }.join(", ") });
+    EOS
+  end
+
+  def call_function
+    <<-EOS.chomp
+    #{c_name}(width, height, RSTRING_PTR(title));
+    EOS
+  end
+
+  def return_value
+    <<-EOS.chomp
+    return self;
     EOS
   end
 end
