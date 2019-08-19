@@ -10,7 +10,7 @@ class Parser
       when /\Astruct/
         parse_type(e)
       else
-        raise
+        Function.new(e["name"])
       end
     end
   end
