@@ -29,6 +29,6 @@ class Function
   end
 
   def impl_header
-    'mrb_define_module_function(mrb, mod_raylib, "init_window", mrb_raylib_init_window, MRB_ARGS_REQ(3));'
+    "mrb_define_module_function(mrb, mod_raylib, \"#{ruby_name}\", mrb_raylib_#{ruby_name}, MRB_ARGS_REQ(#{arguments.count}));"
   end
 end
