@@ -65,6 +65,19 @@ mrb_raylib_#{declare_type.lower_name}_set_#{name}(mrb_state *mrb, mrb_value self
     end
   end
 
+  def to_c_argument
+    case type
+    when "int", "unsigned char"
+      name
+    when "float"
+      name
+    when "const char*"
+      "RSTRING_PTR(#{name})"
+    else
+      raise type
+    end
+  end
+
   def to_mrb_value(value)
     case type
     when "int", "unsigned char"

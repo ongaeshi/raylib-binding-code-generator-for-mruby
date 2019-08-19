@@ -55,7 +55,7 @@ mrb_raylib_#{ruby_name}(mrb_state *mrb, mrb_value self)
 
   def call_function
     <<-EOS.chomp
-    #{c_name}(width, height, RSTRING_PTR(title));
+    #{c_name}(#{arguments.map { |e| e.to_c_argument }.join(", ")});
     EOS
   end
 
