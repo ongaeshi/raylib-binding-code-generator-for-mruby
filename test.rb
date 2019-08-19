@@ -293,7 +293,7 @@ mrb_raylib_window_should_close(mrb_state *mrb, mrb_value self)
 {
 
 
-    mrb_bool ret = mrb_bool_value(WindowShouldClose());
+    mrb_value ret = mrb_bool_value(WindowShouldClose());
 
     return ret;
 }
