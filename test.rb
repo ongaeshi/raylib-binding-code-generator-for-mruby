@@ -249,7 +249,7 @@ class FunctionTest < Test::Unit::TestCase
     function = Function.new("void InitWindow(int width, int height, const char* title);")
 
     assert_equal(
-      'mrb_define_module_function(mrb, mod_raylib, "init_window", mrb_raylib_init_window, MRB_ARGS_REQ(3));',
+      '    mrb_define_module_function(mrb, mod_raylib, "init_window", mrb_raylib_init_window, MRB_ARGS_REQ(3));',
       function.impl_content
     )
   end

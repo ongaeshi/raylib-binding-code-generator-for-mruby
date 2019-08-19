@@ -62,6 +62,6 @@ mrb_raylib_#{ruby_name}(mrb_state *mrb, mrb_value self)
   end
 
   def impl_content
-    "mrb_define_module_function(mrb, mod_raylib, \"#{ruby_name}\", mrb_raylib_#{ruby_name}, MRB_ARGS_REQ(#{arguments.count}));"
+    "    mrb_define_module_function(mrb, mod_raylib, \"#{ruby_name}\", mrb_raylib_#{ruby_name}, MRB_ARGS_REQ(#{arguments.count}));"
   end
 end
