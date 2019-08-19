@@ -232,10 +232,16 @@ class FunctionTest < Test::Unit::TestCase
   end
 
   def test_init_window
-    function = Function.new("void InitWindow(int width, int height, const char *title);")
+    function = Function.new("void InitWindow(int width, int height, const char* title);")
     assert_equal "InitWindow", function.c_name
     assert_equal "init_window", function.ruby_name
     assert_equal "void", function.ret_type
     assert_equal 3, function.arguments.count
+    assert_equal "int", function.arguments[0].type
+    assert_equal "width", function.arguments[0].name
+    assert_equal "int", function.arguments[1].type
+    assert_equal "height", function.arguments[1].name
+    assert_equal "const char*", function.arguments[2].type
+    assert_equal "title", function.arguments[2].name
   end
 end

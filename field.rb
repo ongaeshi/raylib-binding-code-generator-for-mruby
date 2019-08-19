@@ -2,9 +2,9 @@ class Field
   attr_reader :type, :name
 
   def initialize(src)
-    type, name = src.scan(/([\w ]+) (\w+);?/)[0]
-    @type = type
-    @name = name
+    type, name = src.scan(/([\w *]+) (\w+);?\Z/)[0]
+    @type = type.strip
+    @name = name.strip
   end
 
   def impl_header(declare_type)
