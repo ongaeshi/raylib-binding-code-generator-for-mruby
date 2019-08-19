@@ -244,4 +244,13 @@ class FunctionTest < Test::Unit::TestCase
     assert_equal "const char*", function.arguments[2].type
     assert_equal "title", function.arguments[2].name
   end
+
+  def test_init_window_impl_header
+    function = Function.new("void InitWindow(int width, int height, const char* title);")
+
+    assert_equal(
+      'mrb_define_module_function(mrb, mod_raylib, "init_window", mrb_raylib_init_window, MRB_ARGS_REQ(3));',
+      function.impl_header
+    )
+  end
 end

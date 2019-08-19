@@ -27,4 +27,8 @@ class Function
       Field.new(e)
     end
   end
+
+  def impl_header
+    'mrb_define_module_function(mrb, mod_raylib, "init_window", mrb_raylib_init_window, MRB_ARGS_REQ(3));'
+  end
 end
