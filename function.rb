@@ -31,4 +31,20 @@ class Function
   def impl_header
     "mrb_define_module_function(mrb, mod_raylib, \"#{ruby_name}\", mrb_raylib_#{ruby_name}, MRB_ARGS_REQ(#{arguments.count}));"
   end
+
+  def impl_content
+    <<-EOS
+static mrb_value
+mrb_init_window(mrb_state *mrb, mrb_value self)
+{
+    mrb_int width, height = 0;
+    mrb_value title;
+    mrb_get_args(mrb, "iiS", &width, &height, &title);
+
+    InitWindow(width, height, RSTRING_PTR(title));
+
+    return self;
+}
+    EOS
+  end
 end

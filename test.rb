@@ -253,4 +253,24 @@ class FunctionTest < Test::Unit::TestCase
       function.impl_header
     )
   end
+
+  def test_init_window_impl_content
+    function = Function.new("void InitWindow(int width, int height, const char* title);")
+
+    expected = <<-EOS
+static mrb_value
+mrb_init_window(mrb_state *mrb, mrb_value self)
+{
+    mrb_int width, height = 0;
+    mrb_value title;
+    mrb_get_args(mrb, "iiS", &width, &height, &title);
+
+    InitWindow(width, height, RSTRING_PTR(title));
+
+    return self;
+}
+    EOS
+
+    assert_equal(expected, function.impl_content)
+  end
 end
