@@ -43,6 +43,8 @@ mrb_raylib_#{ruby_name}(mrb_state *mrb, mrb_value self)
   end
 
   def get_args
+    return "" if (arguments.count == 0)
+
     <<-EOS.chomp
 #{arguments.map { |e| "    #{e.to_mrb_type} #{e.name};" }.join("\n")}
     mrb_get_args(mrb, "#{arguments.map { |e| e.get_args_parameter }.join("") }", #{arguments.map { |e| "&#{e.name}" }.join(", ") });

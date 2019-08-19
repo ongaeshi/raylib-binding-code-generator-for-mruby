@@ -283,4 +283,22 @@ mrb_raylib_init_window(mrb_state *mrb, mrb_value self)
       function.impl_content
     )
   end
+
+  def test_window_should_close_impl_header
+    function = Function.new("bool WindowShouldClose(void);")
+
+    expected = <<-EOS
+static mrb_value
+mrb_raylib_window_should_close(mrb_state *mrb, mrb_value self)
+{
+
+
+    WindowShouldClose();
+
+    return self;
+}
+    EOS
+
+    assert_equal(expected, function.impl_header)
+  end
 end
