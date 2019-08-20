@@ -307,4 +307,23 @@ mrb_raylib_window_should_close(mrb_state *mrb, mrb_value self)
 
     assert_equal "const char*", function.ret_type
   end
+
+  def test_function_having_color_argument
+    function = Function.new("void HaveColor(Color color);")
+
+    assert_equal "Color", function.arguments[0].type
+
+    assert_equal <<-EOS, function.impl_header
+static mrb_value
+mrb_raylib_have_color(mrb_state *mrb, mrb_value self)
+{
+    mrb_value color;
+    mrb_get_args(mrb, "o", &color);
+
+    HaveColor(*(Color*)DATA_PTR(color));
+
+    return self;
+}
+    EOS
+  end
 end
