@@ -47,6 +47,8 @@ mrb_raylib_#{declare_type.lower_name}_set_#{name}(mrb_state *mrb, mrb_value self
       "f"
     when "const char*"
       "S"
+    when "Color"
+      "o"
     else
       raise type
     end
@@ -59,6 +61,8 @@ mrb_raylib_#{declare_type.lower_name}_set_#{name}(mrb_state *mrb, mrb_value self
     when "float"
       "mrb_float"
     when "const char*"
+      "mrb_value"
+    when "Color"
       "mrb_value"
     else
       raise type
@@ -73,6 +77,8 @@ mrb_raylib_#{declare_type.lower_name}_set_#{name}(mrb_state *mrb, mrb_value self
       name
     when "const char*"
       "RSTRING_PTR(#{name})"
+    when "Color"
+      "*(#{type}*)DATA_PTR(#{name})"
     else
       raise type
     end
