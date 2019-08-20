@@ -208,3 +208,37 @@
 - name: const char* GetMonitorName(int monitor);                                # Get the human-readable, UTF-8 encoded name of the primary monitor
 - name: const char* GetClipboardText(void);                                     # Get clipboard text content
 - name: void SetClipboardText(const char* text);                                # Set clipboard text content
+
+# Cursor-related functions
+- name: void ShowCursor(void);                                                  # Shows cursor
+- name: void HideCursor(void);                                                  # Hides cursor
+- name: bool IsCursorHidden(void);                                              # Check if cursor is not visible
+- name: void EnableCursor(void);                                                # Enables cursor (unlock cursor)
+- name: void DisableCursor(void);                                               # Disables cursor (lock cursor)
+
+# Drawing-related functions            
+- name: void ClearBackground(Color color);                                      # Set background color (framebuffer clear color)
+- name: void BeginDrawing(void);                                                # Setup canvas (framebuffer) to start drawing
+- name: void EndDrawing(void);                                                  # End canvas drawing and swap buffers (double buffering)
+# - name: void BeginMode2D(Camera2D camera);                                      # Initialize 2D mode with custom camera (2D)
+- name: void EndMode2D(void);                                                   # Ends 2D mode with custom camera
+# - name: void BeginMode3D(Camera3D camera);                                      # Initializes 3D mode with custom camera (3D)
+- name: void EndMode3D(void);                                                   # Ends 3D mode and returns to default 2D orthographic mode
+# - name: void BeginTextureMode(RenderTexture2D target);                          # Initializes render texture for drawing
+- name: void EndTextureMode(void);                                              # Ends drawing to render texture
+
+# Screen-space-related functions           
+# - name: Ray GetMouseRay(Vector2 mousePosition, Camera camera);                  # Returns a ray trace from mouse position
+# - name: Vector2 GetWorldToScreen(Vector3 position, Camera camera);              # Returns the screen space position for a 3d world space position
+# - name: Matrix GetCameraMatrix(Camera camera);                                  # Returns camera transform matrix (view matrix)
+
+# Timing-related functions         
+- name: void SetTargetFPS(int fps);                                             # Set target FPS (maximum)
+- name: int GetFPS(void);                                                       # Returns current FPS
+- name: float GetFrameTime(void);                                               # Returns time in seconds for last frame drawn
+# - name: double GetTime(void);                                                   # Returns elapsed time in seconds since InitWindow()
+
+# ---------------------------------------------------------------------------
+# module: text
+# ---------------------------------------------------------------------------
+- name: void DrawText(const char* text, int posX, int posY, int fontSize, Color color);                   # Draw text (using default font)
