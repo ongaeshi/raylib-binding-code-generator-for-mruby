@@ -44,7 +44,7 @@ module Caseninja
     elsif text =~ /_/
       text.gsub("_", " ").downcase
     else
-      text.split(/(?=[A-Z])/).join(" ").downcase
+      text.gsub(/([a-z])([A-Z])/, "\\1 \\2").downcase
     end
   end
   

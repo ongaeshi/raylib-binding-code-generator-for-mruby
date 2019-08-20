@@ -327,3 +327,16 @@ mrb_raylib_have_color(mrb_state *mrb, mrb_value self)
     EOS
   end
 end
+
+class CaseninjaTest < Test::Unit::TestCase
+  def test_clear_background_to_snake_case
+    assert_equal "clear_background", Caseninja.to_snake("ClearBackground")
+  end
+  def test_fps_to_snake_case
+    assert_equal "get_fps", Caseninja.to_snake("GetFPS")
+  end
+
+  def test_2d_to_snake_case
+    assert_equal "end_mode2d", Caseninja.to_snake("EndMode2D")
+  end
+end
