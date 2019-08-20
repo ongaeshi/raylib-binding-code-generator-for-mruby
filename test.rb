@@ -301,4 +301,10 @@ mrb_raylib_window_should_close(mrb_state *mrb, mrb_value self)
 
     assert_equal(expected, function.impl_header)
   end
+
+  def test_retrun_const_char_pointer
+    function = Function.new("const char* GetMonitorName(int monitor);")
+
+    assert_equal "const char*", function.ret_type
+  end
 end
