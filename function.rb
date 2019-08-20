@@ -6,7 +6,7 @@ class Function
   attr_reader :arguments
 
   def initialize(src)
-    ret_type, c_name, arguments = src.scan(/([\w ]+?)(\w+)\((.*)\)/)[0]
+    ret_type, c_name, arguments = src.scan(/([\w *]+?)(\w+)\((.*)\)/)[0]
 
     @c_name = c_name
     @ruby_name = Caseninja.to_snake(c_name)
