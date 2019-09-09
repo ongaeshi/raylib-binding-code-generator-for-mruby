@@ -82,6 +82,7 @@ void mrb_raylib_module_init(mrb_state *mrb)
 #include <raylib.h>
 #include <string.h>
 
+static struct RClass *mrb_cls_raylib_color;
 const static struct mrb_data_type mrb_raylib_color_type = { "Color", mrb_free };
 
 static mrb_value
@@ -182,6 +183,7 @@ void mrb_raylib_module_init(mrb_state *mrb)
 
     {
         struct RClass *cls = mrb_define_class_under(mrb, mod_raylib, "Color", mrb->object_class);
+        mrb_cls_raylib_color = cls;
         MRB_SET_INSTANCE_TT(cls, MRB_TT_DATA);
         mrb_define_method(mrb, cls, "initialize", mrb_raylib_color_initialize, MRB_ARGS_NONE());
         mrb_define_method(mrb, cls, "r", mrb_raylib_color_r, MRB_ARGS_NONE());
