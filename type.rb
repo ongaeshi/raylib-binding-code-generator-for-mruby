@@ -22,6 +22,22 @@ static struct RClass *mrb_cls_raylib_#{lower_name};
 const static struct mrb_data_type mrb_raylib_#{lower_name}_type = { "#{name}", mrb_free };
 
 static mrb_value
+mrb_raylib_#{lower_name}_to_mrb(mrb_state *mrb, #{name} src)
+{
+    #{name} *obj = (#{name}*)mrb_malloc(mrb, sizeof(#{name}));
+    *obj = src;
+
+    struct RData *data = mrb_data_object_alloc(
+        mrb,
+        mrb_cls_raylib_#{lower_name},
+        obj,
+        &mrb_raylib_#{lower_name}_type
+        );
+
+    return mrb_obj_value(data);
+}
+
+static mrb_value
 mrb_raylib_#{lower_name}_initialize(mrb_state *mrb, mrb_value self)
 {
     #{name} *obj;

@@ -86,6 +86,22 @@ static struct RClass *mrb_cls_raylib_color;
 const static struct mrb_data_type mrb_raylib_color_type = { "Color", mrb_free };
 
 static mrb_value
+mrb_raylib_color_to_mrb(mrb_state *mrb, Color src)
+{
+    Color *obj = (Color*)mrb_malloc(mrb, sizeof(Color));
+    *obj = src;
+
+    struct RData *data = mrb_data_object_alloc(
+        mrb,
+        mrb_cls_raylib_color,
+        obj,
+        &mrb_raylib_color_type
+        );
+
+    return mrb_obj_value(data);
+}
+
+static mrb_value
 mrb_raylib_color_initialize(mrb_state *mrb, mrb_value self)
 {
     Color *obj;
