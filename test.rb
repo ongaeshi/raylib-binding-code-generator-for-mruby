@@ -344,6 +344,23 @@ mrb_raylib_have_color(mrb_state *mrb, mrb_value self)
 }
     EOS
   end
+
+  def test_return_color
+    function = Function.new("Color RetColor()")
+    assert_equal "Color", function.ret_type
+
+    assert_equal <<-EOS, function.impl_header
+static mrb_value
+mrb_raylib_ret_color(mrb_state *mrb, mrb_value self)
+{
+
+
+    mrb_value ret = mrb_raylib_color_to_mrb(mrb, RetColor());
+
+    return ret;
+}
+    EOS
+  end
 end
 
 class CaseninjaTest < Test::Unit::TestCase

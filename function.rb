@@ -91,6 +91,8 @@ mrb_raylib_#{ruby_name}(mrb_state *mrb, mrb_value self)
       "mrb_bool_value(#{value})"
     when "const char*"
       "mrb_str_new_cstr(mrb, #{value})"
+    when "Color"
+      "mrb_raylib_color_to_mrb(mrb, #{value})"
     else
       raise type
     end
