@@ -1,4 +1,5 @@
 require_relative "caseninja"
+require_relative "util"
 
 class Function
   attr_reader :c_name, :ruby_name
@@ -91,8 +92,8 @@ mrb_raylib_#{ruby_name}(mrb_state *mrb, mrb_value self)
       "mrb_bool_value(#{value})"
     when "const char*"
       "mrb_str_new_cstr(mrb, #{value})"
-    when "Color"
-      "mrb_raylib_color_to_mrb(mrb, #{value})"
+    when *raylib_objects
+      "mrb_raylib_#{type.downcase}_to_mrb(mrb, #{value})"
     else
       raise type
     end

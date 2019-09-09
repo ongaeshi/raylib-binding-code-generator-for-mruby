@@ -1,3 +1,5 @@
+require_relative 'util'
+
 class Field
   attr_reader :type, :name
 
@@ -47,7 +49,7 @@ mrb_raylib_#{declare_type.lower_name}_set_#{name}(mrb_state *mrb, mrb_value self
       "f"
     when "const char*"
       "S"
-    when "Color"
+    when *raylib_objects
       "o"
     else
       raise type
@@ -62,7 +64,7 @@ mrb_raylib_#{declare_type.lower_name}_set_#{name}(mrb_state *mrb, mrb_value self
       "mrb_float"
     when "const char*"
       "mrb_value"
-    when "Color"
+    when *raylib_objects
       "mrb_value"
     else
       raise type
@@ -77,7 +79,7 @@ mrb_raylib_#{declare_type.lower_name}_set_#{name}(mrb_state *mrb, mrb_value self
       name
     when "const char*"
       "RSTRING_PTR(#{name})"
-    when "Color"
+    when *raylib_objects
       "*(#{type}*)DATA_PTR(#{name})"
     else
       raise type
