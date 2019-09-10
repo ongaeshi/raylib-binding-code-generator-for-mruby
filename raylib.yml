@@ -67,15 +67,15 @@
     - int mipmaps;             # Mipmap levels, 1 by default
     - int format;              # Data format (PixelFormat type)
 
-# # Texture type (multiple internal formats supported)
-# # NOTE: Data stored in GPU memory (VRAM)
-# - name: struct Texture2D
-#   fields:
-#     - unsigned int id;         # OpenGL texture id
-#     - int width;               # Texture base width
-#     - int height;              # Texture base height
-#     - int mipmaps;             # Mipmap levels, 1 by default
-#     - int format;              # Data format (PixelFormat type)
+# Texture type (multiple internal formats supported)
+# NOTE: Data stored in GPU memory (VRAM)
+- name: struct Texture2D
+  fields:
+    # - unsigned int id;         # OpenGL texture id
+    - int width;               # Texture base width
+    - int height;              # Texture base height
+    - int mipmaps;             # Mipmap levels, 1 by default
+    - int format;              # Data format (PixelFormat type)
 
 # # Texture type, same as Texture2D
 # # - name: typedef Texture2D Texture;
@@ -378,7 +378,7 @@
 # - name: void DrawTriangleFan(Vector2 *points, int numPoints, Color color);                                  # Draw a triangle fan defined by points
 - name: void DrawPoly(Vector2 center, int sides, float radius, float rotation, Color color);                # Draw a regular polygon (Vector version)
 
-# - name: void SetShapesTexture(Texture2D texture, Rectangle source);                                         # Define default texture used to draw shapes
+- name: void SetShapesTexture(Texture2D texture, Rectangle source);                                         # Define default texture used to draw shapes
 
 # Basic shapes collision detection functions
 - name: bool CheckCollisionRecs(Rectangle rec1, Rectangle rec2);                                            # Check collision between two rectangles
@@ -399,17 +399,17 @@
 - name: Image LoadImageRaw(const char* fileName, int width, int height, int format, int headerSize);        # Load image from RAW file data
 - name: void ExportImage(Image image, const char* fileName);                                                # Export image data to file
 - name: void ExportImageAsCode(Image image, const char* fileName);                                          # Export image as code file defining an array of bytes
-# - name: Texture2D LoadTexture(const char* fileName);                                                        # Load texture from file into GPU memory (VRAM)
-# - name: Texture2D LoadTextureFromImage(Image image);                                                        # Load texture from image data
+- name: Texture2D LoadTexture(const char* fileName);                                                        # Load texture from file into GPU memory (VRAM)
+- name: Texture2D LoadTextureFromImage(Image image);                                                        # Load texture from image data
 # - name: TextureCubemap LoadTextureCubemap(Image image, int layoutType);                                     # Load cubemap from image, multiple image cubemap layouts supported
 # - name: RenderTexture2D LoadRenderTexture(int width, int height);                                           # Load texture for rendering (framebuffer)
 - name: void UnloadImage(Image image);                                                                      # Unload image from CPU memory (RAM)
-# - name: void UnloadTexture(Texture2D texture);                                                              # Unload texture from GPU memory (VRAM)
+- name: void UnloadTexture(Texture2D texture);                                                              # Unload texture from GPU memory (VRAM)
 # - name: void UnloadRenderTexture(RenderTexture2D target);                                                   # Unload render texture from GPU memory (VRAM)
 # - name: Color *GetImageData(Image image);                                                                   # Get pixel data from image as a Color struct array
 # - name: Vector4 *GetImageDataNormalized(Image image);                                                       # Get pixel data from image as Vector4 array (float normalized)
 - name: int GetPixelDataSize(int width, int height, int format);                                            # Get pixel data size in bytes (image or texture)
-# - name: Image GetTextureData(Texture2D texture);                                                            # Get pixel data from GPU texture and return an Image
+- name: Image GetTextureData(Texture2D texture);                                                            # Get pixel data from GPU texture and return an Image
 - name: Image GetScreenData(void);                                                                          # Get pixel data from screen buffer and return an Image (screenshot)
 # - name: void UpdateTexture(Texture2D texture, const void *pixels);                                          # Update GPU texture with new data
 
@@ -462,12 +462,12 @@
 # - name: void SetTextureWrap(Texture2D texture, int wrapMode);                                               # Set texture wrapping mode
 
 # Texture2D drawing functions                                                                      
-# - name: void DrawTexture(Texture2D texture, int posX, int posY, Color tint);                                # Draw a Texture2D
-# - name: void DrawTextureV(Texture2D texture, Vector2 position, Color tint);                                 # Draw a Texture2D with position defined as Vector2
-# - name: void DrawTextureEx(Texture2D texture, Vector2 position, float rotation, float scale, Color tint);   # Draw a Texture2D with extended parameters
-# - name: void DrawTextureRec(Texture2D texture, Rectangle sourceRec, Vector2 position, Color tint);          # Draw a part of a texture defined by a rectangle
-# - name: void DrawTextureQuad(Texture2D texture, Vector2 tiling, Vector2 offset, Rectangle quad, Color tint);  # Draw texture quad with tiling and offset parameters
-# - name: void DrawTexturePro(Texture2D texture, Rectangle sourceRec, Rectangle destRec, Vector2 origin, float rotation, Color tint);       # Draw a part of a texture defined by a rectangle with 'pro' parameters
+- name: void DrawTexture(Texture2D texture, int posX, int posY, Color tint);                                # Draw a Texture2D
+- name: void DrawTextureV(Texture2D texture, Vector2 position, Color tint);                                 # Draw a Texture2D with position defined as Vector2
+- name: void DrawTextureEx(Texture2D texture, Vector2 position, float rotation, float scale, Color tint);   # Draw a Texture2D with extended parameters
+- name: void DrawTextureRec(Texture2D texture, Rectangle sourceRec, Vector2 position, Color tint);          # Draw a part of a texture defined by a rectangle
+- name: void DrawTextureQuad(Texture2D texture, Vector2 tiling, Vector2 offset, Rectangle quad, Color tint);  # Draw texture quad with tiling and offset parameters
+- name: void DrawTexturePro(Texture2D texture, Rectangle sourceRec, Rectangle destRec, Vector2 origin, float rotation, Color tint);       # Draw a part of a texture defined by a rectangle with 'pro' parameters
 # - name: void DrawTextureNPatch(Texture2D texture, NPatchInfo nPatchInfo, Rectangle destRec, Vector2 origin, float rotation, Color tint);  # Draws a texture (or part of it) that stretches or shrinks nicely
 
 # ---------------------------------------------------------------------------
