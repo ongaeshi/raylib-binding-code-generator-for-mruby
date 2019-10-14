@@ -43,10 +43,12 @@ mrb_raylib_#{declare_type.lower_name}_set_#{name}(mrb_state *mrb, mrb_value self
 
   def get_args_parameter
     case type
-    when "int", "unsigned char"
+    when "int", "unsigned char", "unsigned int"
       "i"
     when "float"
       "f"
+    when "bool"
+      "b"
     when "const char*"
       "S"
     when *raylib_objects
@@ -58,10 +60,12 @@ mrb_raylib_#{declare_type.lower_name}_set_#{name}(mrb_state *mrb, mrb_value self
 
   def to_mrb_type
     case type
-    when "int", "unsigned char"
+    when "int", "unsigned char", "unsigned int"
       "mrb_int"
     when "float"
       "mrb_float"
+    when "bool"
+      "mrb_bool"
     when "const char*"
       "mrb_value"
     when *raylib_objects
@@ -73,9 +77,11 @@ mrb_raylib_#{declare_type.lower_name}_set_#{name}(mrb_state *mrb, mrb_value self
 
   def to_c_argument
     case type
-    when "int", "unsigned char"
+    when "int", "unsigned char", "unsigned int"
       name
     when "float"
+      name
+    when "bool"
       name
     when "const char*"
       "RSTRING_PTR(#{name})"
@@ -88,10 +94,12 @@ mrb_raylib_#{declare_type.lower_name}_set_#{name}(mrb_state *mrb, mrb_value self
 
   def to_mrb_value(value)
     case type
-    when "int", "unsigned char"
+    when "int", "unsigned char", "unsigned int"
       "mrb_fixnum_value(#{value})"
     when "float"
       "mrb_float_value(mrb, #{value})"
+    when "bool"
+      "mrb_bool_value(#{value})"
     else
       raise type
     end

@@ -84,7 +84,7 @@ mrb_raylib_#{ruby_name}(mrb_state *mrb, mrb_value self)
 
   def to_mrb_value(type, value)
     case type
-    when "int", "unsigned char"
+    when "int", "unsigned char", "unsigned int"
       "mrb_fixnum_value(#{value})"
     when "float"
       "mrb_float_value(mrb, #{value})"
