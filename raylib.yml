@@ -122,8 +122,8 @@
 #     - int charsCount;         # Number of characters
 #     # - CharInfo *chars;        # Characters info data
     
-# # Camera type, defines 3d camera position/orientation
-# - name: struct Camera3D
+# Camera type, defines 3d camera position/orientation
+- name: struct Camera3D
 #   fields:
 #     - Vector3 position;       # Camera position
 #     - Vector3 target;         # Camera target it looks-at
@@ -133,8 +133,8 @@
 
 # # - name: typedef Camera3D Camera;    # Camera type fallback, defaults to Camera3D
 
-# # Camera2D type, defines a 2d camera
-# - name: struct Camera2D
+# Camera2D type, defines a 2d camera
+- name: struct Camera2D
 #   fields:
 #     - Vector2 offset;         # Camera offset (displacement from target)
 #     - Vector2 target;         # Camera target (rotation and zoom origin)
@@ -220,9 +220,9 @@
 - name: void ClearBackground(Color color);                                      # Set background color (framebuffer clear color)
 - name: void BeginDrawing(void);                                                # Setup canvas (framebuffer) to start drawing
 - name: void EndDrawing(void);                                                  # End canvas drawing and swap buffers (double buffering)
-# - name: void BeginMode2D(Camera2D camera);                                      # Initialize 2D mode with custom camera (2D)
+- name: void BeginMode2D(Camera2D camera);                                      # Initialize 2D mode with custom camera (2D)
 - name: void EndMode2D(void);                                                   # Ends 2D mode with custom camera
-# - name: void BeginMode3D(Camera3D camera);                                      # Initializes 3D mode with custom camera (3D)
+- name: void BeginMode3D(Camera3D camera);                                      # Initializes 3D mode with custom camera (3D)
 - name: void EndMode3D(void);                                                   # Ends 3D mode and returns to default 2D orthographic mode
 # - name: void BeginTextureMode(RenderTexture2D target);                          # Initializes render texture for drawing
 - name: void EndTextureMode(void);                                              # Ends drawing to render texture
@@ -474,6 +474,8 @@
 # module: text
 # ---------------------------------------------------------------------------
 - name: void DrawText(const char* text, int posX, int posY, int fontSize, Color color);                   # Draw text (using default font)
+
+- name: void DrawFPS(int posX, int posY);                                                                 # Shows current FPS
 
 # ---------------------------------------------------------------------------
 # module: models
