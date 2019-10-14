@@ -11,5 +11,24 @@ def raylib_objects
     Camera2D
     Camera3D
     Font
+    RenderTexture2D
+    NPatchInfo
+    CharInfo
+    Mesh
+    Shader
+    MaterialMap
+    Material
+    Model
+    Transform
+    BoneInfo
+    ModelAnimation
+    Ray
+    RayHitInfo      
+    BoundingBox     
+    Wave
+    Sound
+    Music
+    AudioStream
+    VrDeviceInfo
     )
 end

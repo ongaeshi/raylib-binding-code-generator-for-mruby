@@ -84,7 +84,7 @@
 # # - name: typedef Texture2D TextureCubemap;
 
 # # RenderTexture type, for texture rendering
-# - name: struct RenderTexture2D
+- name: struct RenderTexture2D
 #   fields:
 #     - unsigned int id;         # OpenGL Framebuffer Object (FBO) id
 #     - Texture2D texture;       # Color buffer attachment texture
@@ -94,8 +94,8 @@
 # # RenderTexture type, same as RenderTexture2D
 # # - name: typedef RenderTexture2D RenderTexture;
 
-# # N-Patch layout info
-# - name: struct NPatchInfo
+# N-Patch layout info
+- name: struct NPatchInfo
 #   fields:
 #     - Rectangle sourceRec;   # Region in the texture
 #     - int left;              # left border offset
@@ -104,8 +104,8 @@
 #     - int bottom;            # bottom border offset
 #     - int type;              # layout of the n-patch: 3x3, 1x3 or 3x1
 
-# # Font character info
-# - name: struct CharInfo
+# Font character info
+- name: struct CharInfo
 #   fields:
 #     - int value;              # Character value (Unicode)
 #     - Rectangle rec;          # Character rectangle in sprite font
@@ -141,41 +141,41 @@
 #     - float rotation;         # Camera rotation in degrees
 #     - float zoom;             # Camera zoom (scaling), should be 1.0f by default
 
-# - name: struct Mesh            # Vertex data definning a mesh
-# - name: struct Shader          # Shader type (generic shader)
-# - name: struct MaterialMap     # Material texture map
-# - name: struct Material        # Material type
-# - name: struct Model           # Basic 3d Model type
-# - name: struct Transform       # Transformation (used for bones)
-# - name: struct BoneInfo        # Bone information
-# - name: struct ModelAnimation  # Model animation data (bones and frames)
+- name: struct Mesh            # Vertex data definning a mesh
+- name: struct Shader          # Shader type (generic shader)
+- name: struct MaterialMap     # Material texture map
+- name: struct Material        # Material type
+- name: struct Model           # Basic 3d Model type
+- name: struct Transform       # Transformation (used for bones)
+- name: struct BoneInfo        # Bone information
+- name: struct ModelAnimation  # Model animation data (bones and frames)
 
-# # Ray type (useful for raycast)
-# - name: struct Ray
+# Ray type (useful for raycast)
+- name: struct Ray
 #   fields:
 #     - Vector3 position;        # Ray position (origin)
 #     - Vector3 direction;       # Ray direction
 
-# # Raycast hit information
-# - name: struct RayHitInfo      
+# Raycast hit information
+- name: struct RayHitInfo      
 #   fields:
 #     - bool hit;                # Did the ray hit something?
 #     - float distance;          # Distance to nearest hit
 #     - Vector3 position;        # Position of nearest hit
 #     - Vector3 normal;          # Surface normal of hit
 
-# # Bounding box type for 3d mesh
-# - name: struct BoundingBox     
+# Bounding box type for 3d mesh
+- name: struct BoundingBox     
 #   fields:
 #     - Vector3 min;             # Minimum vertex box-corner
 #     - Vector3 max;             # Maximum vertex box-corner
     
-# - name: struct Wave            # Wave type, defines audio wave data
-# - name: struct Sound           # Basic Sound source and buffer
-# - name: struct Music           # Music type (file streaming from memory)
-# - name: struct AudioStream     # Raw audio stream type
+- name: struct Wave            # Wave type, defines audio wave data
+- name: struct Sound           # Basic Sound source and buffer
+- name: struct Music           # Music type (file streaming from memory)
+- name: struct AudioStream     # Raw audio stream type
     
-# - name: struct VrDeviceInfo    # VR device parameters
+- name: struct VrDeviceInfo    # VR device parameters
 
 # ---------------------------------------------------------------------------
 # module: core
