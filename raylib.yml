@@ -85,11 +85,11 @@
 
 # # RenderTexture type, for texture rendering
 - name: struct RenderTexture2D
-#   fields:
-#     - unsigned int id;         # OpenGL Framebuffer Object (FBO) id
-#     - Texture2D texture;       # Color buffer attachment texture
-#     - Texture2D depth;         # Depth buffer attachment texture
-#     - bool depthTexture;       # Track if depth attachment is a texture or renderbuffer
+  fields:
+    - unsigned int id;         # OpenGL Framebuffer Object (FBO) id
+    - Texture2D texture;       # Color buffer attachment texture
+    - Texture2D depth;         # Depth buffer attachment texture
+    - bool depthTexture;       # Track if depth attachment is a texture or renderbuffer
 
 # # RenderTexture type, same as RenderTexture2D
 # # - name: typedef RenderTexture2D RenderTexture;

@@ -100,6 +100,8 @@ mrb_raylib_#{declare_type.lower_name}_set_#{name}(mrb_state *mrb, mrb_value self
       "mrb_float_value(mrb, #{value})"
     when "bool"
       "mrb_bool_value(#{value})"
+    when *raylib_objects
+      "mrb_raylib_#{type.downcase}_to_mrb(mrb, #{value})"
     else
       raise type
     end
