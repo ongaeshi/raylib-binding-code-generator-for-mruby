@@ -112,7 +112,7 @@
 #     - int offsetX;            # Character offset X when drawing
 #     - int offsetY;            # Character offset Y when drawing
 #     - int advanceX;           # Character advance position X
-#     # - unsigned char *data;    # Character pixel data (grayscale)
+#     # - unsigned char* data;    # Character pixel data (grayscale)
 
 # Font type, includes texture and chars data
 - name: struct Font            
@@ -263,11 +263,11 @@
 - name: const char* GetFileNameWithoutExt(const char* filePath);                # Get filename string without extension (memory should be freed)
 - name: const char* GetDirectoryPath(const char* fileName);                     # Get full path for a given fileName (uses static string)
 - name: const char* GetWorkingDirectory(void);                                  # Get current working directory (uses static string)
-# - name: char **GetDirectoryFiles(const char* dirPath, int *count);              # Get filenames in a directory path (memory should be freed)
+# - name: char** GetDirectoryFiles(const char* dirPath, int* count);              # Get filenames in a directory path (memory should be freed)
 - name: void ClearDirectoryFiles(void);                                         # Clear directory files paths buffers (free memory)
 - name: bool ChangeDirectory(const char* dir);                                  # Change working directory, returns true if success
 - name: bool IsFileDropped(void);                                               # Check if a file has been dropped into window
-# - name: char **GetDroppedFiles(int *count);                                     # Get dropped files names (memory should be freed)
+# - name: char** GetDroppedFiles(int* count);                                     # Get dropped files names (memory should be freed)
 - name: void ClearDroppedFiles(void);                                           # Clear dropped files paths buffer (free memory)
 # - name: long GetFileModTime(const char* fileName);                              # Get file modification time (last write time)
 
@@ -504,7 +504,7 @@
 # - name: const char* TextInsert(const char* text, const char* insert, int position);                       # Insert text in a position (memory should be freed!)
 # - name: const char* TextJoin(const char** textList, int count, const char* delimiter);                    # Join text strings with delimiter
 # - name: const char* *TextSplit(const char* text, char delimiter, int* count);                             # Split text into multiple strings
-# - name: void TextAppend(char *text, const char* append, int* position);                                   # Append text at specific position and move cursor!
+# - name: void TextAppend(char* text, const char* append, int* position);                                   # Append text at specific position and move cursor!
 - name: int TextFindIndex(const char* text, const char* find);                                            # Find first text occurrence within a string
 - name: const char* TextToUpper(const char* text);                                                        # Get upper case version of provided string
 - name: const char* TextToLower(const char* text);                                                        # Get lower case version of provided string
@@ -533,24 +533,24 @@
 - name: void DrawGizmo(Vector3 position);                                                                   # Draw simple gizmo
 
 # Model loading/unloading functions
-# - name: Model LoadModel(const char *fileName);                                                              # Load model from files (meshes and materials)
+# - name: Model LoadModel(const char* fileName);                                                              # Load model from files (meshes and materials)
 # - name: Model LoadModelFromMesh(Mesh mesh);                                                                 # Load model from generated mesh (default material)
 # - name: void UnloadModel(Model model);                                                                      # Unload model from memory (RAM and/or VRAM)
 
 # Mesh loading/unloading functions
-# - name: Mesh *LoadMeshes(const char *fileName, int *meshCount);                                             # Load meshes from model file
-# - name: void ExportMesh(Mesh mesh, const char *fileName);                                                   # Export mesh data to file
+# - name: Mesh* LoadMeshes(const char* fileName, int* meshCount);                                             # Load meshes from model file
+# - name: void ExportMesh(Mesh mesh, const char* fileName);                                                   # Export mesh data to file
 # - name: void UnloadMesh(Mesh *mesh);                                                                        # Unload mesh from memory (RAM and/or VRAM)
 
 # Material loading/unloading functions
-# - name: Material *LoadMaterials(const char *fileName, int *materialCount);                                  # Load materials from model file
+# - name: Material *LoadMaterials(const char* fileName, int *materialCount);                                  # Load materials from model file
 # - name: Material LoadMaterialDefault(void);                                                                 # Load default material (Supports: DIFFUSE, SPECULAR, NORMAL maps)
 # - name: void UnloadMaterial(Material material);                                                             # Unload material from GPU memory (VRAM)
 # - name: void SetMaterialTexture(Material *material, int mapType, Texture2D texture);                        # Set texture for a material map type (MAP_DIFFUSE, MAP_SPECULAR...)
 # - name: void SetModelMeshMaterial(Model *model, int meshId, int materialId);                                # Set material for a mesh
 
 # Model animations loading/unloading functions
-# - name: ModelAnimation *LoadModelAnimations(const char *fileName, int *animsCount);                         # Load model animations from file
+# - name: ModelAnimation* LoadModelAnimations(const char* fileName, int* animsCount);                         # Load model animations from file
 # - name: void UpdateModelAnimation(Model model, ModelAnimation anim, int frame);                             # Update model animation pose
 # - name: void UnloadModelAnimation(ModelAnimation anim);                                                     # Unload animation data
 # - name: bool IsModelAnimationValid(Model model, ModelAnimation anim);                                       # Check model animation skeleton match
@@ -591,3 +591,104 @@
 # - name: RayHitInfo GetCollisionRayModel(Ray ray, Model *model);                                             # Get collision info between ray and model
 # - name: RayHitInfo GetCollisionRayTriangle(Ray ray, Vector3 p1, Vector3 p2, Vector3 p3);                    # Get collision info between ray and triangle
 # - name: RayHitInfo GetCollisionRayGround(Ray ray, float groundHeight);                                      # Get collision info between ray and ground plane (Y-normal plane)
+
+# ---------------------------------------------------------------------------
+# module: shaders (rlgl)
+# ---------------------------------------------------------------------------
+# Shader loading/unloading functions
+# - name: char* LoadText(const char* fileName);                                                               # Load chars array from text file
+- name: Shader LoadShader(const char* vsFileName, const char* fsFileName);                                  # Load shader from files and bind default locations
+# - name: Shader LoadShaderCode(char* vsCode, char* fsCode);                                                  # Load shader from code strings and bind default locations
+- name: void UnloadShader(Shader shader);                                                                   # Unload shader from GPU memory (VRAM)
+                                
+- name: Shader GetShaderDefault(void);                                                                      # Get default shader
+- name: Texture2D GetTextureDefault(void);                                                                  # Get default texture
+                                
+# Shader configuration functions                               
+- name: int GetShaderLocation(Shader shader, const char* uniformName);                                      # Get shader uniform location
+# - name: void SetShaderValue(Shader shader, int uniformLoc, const void *value, int uniformType);             # Set shader uniform value
+# - name: void SetShaderValueV(Shader shader, int uniformLoc, const void *value, int uniformType, int count); # Set shader uniform value vector
+- name: void SetShaderValueMatrix(Shader shader, int uniformLoc, Matrix mat);                               # Set shader uniform value (matrix 4x4)
+- name: void SetShaderValueTexture(Shader shader, int uniformLoc, Texture2D texture);                       # Set shader uniform value for texture
+- name: void SetMatrixProjection(Matrix proj);                                                              # Set a custom projection matrix (replaces internal projection matrix)
+- name: void SetMatrixModelview(Matrix view);                                                               # Set a custom modelview matrix (replaces internal modelview matrix)
+- name: Matrix GetMatrixModelview();                                                                        # Get internal modelview matrix
+
+# Shading begin/end functions
+- name: void BeginShaderMode(Shader shader);                                                                # Begin custom shader drawing
+- name: void EndShaderMode(void);                                                                           # End custom shader drawing (use default shader)
+- name: void BeginBlendMode(int mode);                                                                      # Begin blending mode (alpha, additive, multiplied)
+- name: void EndBlendMode(void);                                                                            # End blending mode (reset to default: alpha blending)
+- name: void BeginScissorMode(int x, int y, int width, int height);                                         # Begin scissor mode (define screen area for following drawing)
+- name: void EndScissorMode(void);                                                                          # End scissor mode
+
+# VR control functions
+- name: void InitVrSimulator(void);                                                                         # Init VR simulator for selected device parameters
+- name: void CloseVrSimulator(void);                                                                        # Close VR simulator for current device
+# - name: void UpdateVrTracking(Camera *camera);                                                              # Update VR tracking (position and orientation) and camera
+- name: void SetVrConfiguration(VrDeviceInfo info, Shader distortion);                                      # Set stereo rendering configuration parameters 
+- name: bool IsVrSimulatorReady(void);                                                                      # Detect if VR simulator is ready
+- name: void ToggleVrMode(void);                                                                            # Enable/Disable VR experience
+- name: void BeginVrDrawing(void);                                                                          # Begin VR simulator stereo rendering
+- name: void EndVrDrawing(void);                                                                            # End VR simulator stereo rendering
+
+# ---------------------------------------------------------------------------
+# module: module: audio
+# ---------------------------------------------------------------------------
+# Audio device management functions
+- name: void InitAudioDevice(void);                                                     # Initialize audio device and context
+- name: void CloseAudioDevice(void);                                                    # Close the audio device and context (and music stream)
+- name: bool IsAudioDeviceReady(void);                                                  # Check if audio device is ready
+- name: void SetMasterVolume(float volume);                                             # Set master volume (listener)
+
+# Wave/Sound loading/unloading functions
+- name: Wave LoadWave(const char* fileName);                                            # Load wave data from file
+# - name: Wave LoadWaveEx(void *data, int sampleCount, int sampleRate, int sampleSize, int channels); # Load wave data from raw array data
+- name: Sound LoadSound(const char* fileName);                                          # Load sound from file
+- name: Sound LoadSoundFromWave(Wave wave);                                             # Load sound from wave data
+# - name: void UpdateSound(Sound sound, const void *data, int samplesCount);              # Update sound buffer with new data
+- name: void UnloadWave(Wave wave);                                                     # Unload wave data
+- name: void UnloadSound(Sound sound);                                                  # Unload sound
+- name: void ExportWave(Wave wave, const char* fileName);                               # Export wave data to file
+- name: void ExportWaveAsCode(Wave wave, const char* fileName);                         # Export wave sample data to code (.h)
+
+# Wave/Sound management functions
+- name: void PlaySound(Sound sound);                                                    # Play a sound
+- name: void PauseSound(Sound sound);                                                   # Pause a sound
+- name: void ResumeSound(Sound sound);                                                  # Resume a paused sound
+- name: void StopSound(Sound sound);                                                    # Stop playing a sound
+- name: bool IsSoundPlaying(Sound sound);                                               # Check if a sound is currently playing
+- name: void SetSoundVolume(Sound sound, float volume);                                 # Set volume for a sound (1.0 is max level)
+- name: void SetSoundPitch(Sound sound, float pitch);                                   # Set pitch for a sound (1.0 is base level)
+# - name: void WaveFormat(Wave *wave, int sampleRate, int sampleSize, int channels);      # Convert wave data to desired format
+- name: Wave WaveCopy(Wave wave);                                                       # Copy a wave to a new wave
+# - name: void WaveCrop(Wave *wave, int initSample, int finalSample);                     # Crop a wave to defined samples range
+# - name: float *GetWaveData(Wave wave);                                                  # Get samples data from wave as a floats array
+
+# Music management functions
+- name: Music LoadMusicStream(const char* fileName);                                    # Load music stream from file
+- name: void UnloadMusicStream(Music music);                                            # Unload music stream
+- name: void PlayMusicStream(Music music);                                              # Start music playing
+- name: void UpdateMusicStream(Music music);                                            # Updates buffers for music streaming
+- name: void StopMusicStream(Music music);                                              # Stop music playing
+- name: void PauseMusicStream(Music music);                                             # Pause music playing
+- name: void ResumeMusicStream(Music music);                                            # Resume playing paused music
+- name: bool IsMusicPlaying(Music music);                                               # Check if music is playing
+- name: void SetMusicVolume(Music music, float volume);                                 # Set volume for music (1.0 is max level)
+- name: void SetMusicPitch(Music music, float pitch);                                   # Set pitch for a music (1.0 is base level)
+- name: void SetMusicLoopCount(Music music, int count);                                 # Set music loop count (loop repeats)
+- name: float GetMusicTimeLength(Music music);                                          # Get music time length (in seconds)
+- name: float GetMusicTimePlayed(Music music);                                          # Get current music time played (in seconds)
+
+# AudioStream management functions
+- name: AudioStream InitAudioStream(unsigned int sampleRate, unsigned int sampleSize, unsigned int channels); # Init audio stream (to stream raw audio pcm data)
+# - name: void UpdateAudioStream(AudioStream stream, const void *data, int samplesCount); # Update audio stream buffers with data
+- name: void CloseAudioStream(AudioStream stream);                                      # Close audio stream and free memory
+- name: bool IsAudioBufferProcessed(AudioStream stream);                                # Check if any audio stream buffers requires refill
+- name: void PlayAudioStream(AudioStream stream);                                       # Play audio stream
+- name: void PauseAudioStream(AudioStream stream);                                      # Pause audio stream
+- name: void ResumeAudioStream(AudioStream stream);                                     # Resume audio stream
+- name: bool IsAudioStreamPlaying(AudioStream stream);                                  # Check if audio stream is playing
+- name: void StopAudioStream(AudioStream stream);                                       # Stop audio stream
+- name: void SetAudioStreamVolume(AudioStream stream, float volume);                    # Set volume for audio stream (1.0 is max level)
+- name: void SetAudioStreamPitch(AudioStream stream, float pitch);                      # Set pitch for audio stream (1.0 is base level)
