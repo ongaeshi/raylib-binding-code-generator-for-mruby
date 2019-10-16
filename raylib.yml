@@ -71,7 +71,7 @@
 # NOTE: Data stored in GPU memory (VRAM)
 - name: struct Texture2D
   fields:
-    # - unsigned int id;         # OpenGL texture id
+    - unsigned int id;         # OpenGL texture id
     - int width;               # Texture base width
     - int height;              # Texture base height
     - int mipmaps;             # Mipmap levels, 1 by default
