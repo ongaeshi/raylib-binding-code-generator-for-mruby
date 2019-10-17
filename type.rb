@@ -19,7 +19,7 @@ class Type
   def impl_header
     <<-EOS
 static struct RClass *mrb_cls_raylib_#{lower_name};
-const static struct mrb_data_type mrb_raylib_#{lower_name}_type = { "#{name}", mrb_free };
+const static struct mrb_data_type mrb_raylib_#{lower_name}_data_type = { "#{name}", mrb_free };
 
 static mrb_value
 mrb_raylib_#{lower_name}_to_mrb(mrb_state *mrb, #{name} src)
@@ -31,7 +31,7 @@ mrb_raylib_#{lower_name}_to_mrb(mrb_state *mrb, #{name} src)
         mrb,
         mrb_cls_raylib_#{lower_name},
         obj,
-        &mrb_raylib_#{lower_name}_type
+        &mrb_raylib_#{lower_name}_data_type
         );
 
     return mrb_obj_value(data);
@@ -45,7 +45,7 @@ mrb_raylib_#{lower_name}_initialize(mrb_state *mrb, mrb_value self)
     obj = (#{name}*)mrb_malloc(mrb, sizeof(#{name}));
     memset(obj, 0, sizeof(#{name}));
 
-    DATA_TYPE(self) = &mrb_raylib_#{lower_name}_type;
+    DATA_TYPE(self) = &mrb_raylib_#{lower_name}_data_type;
     DATA_PTR(self) = obj;
     return self;
 }
