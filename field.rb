@@ -25,9 +25,9 @@ mrb_raylib_#{declare_type.lower_name}_set_#{name}(mrb_state *mrb, mrb_value self
     mrb_get_args(mrb, "#{get_args_parameter}", &value);
 
     #{declare_type.name} *obj = DATA_PTR(self);
-    obj->#{name} = value;
+    obj->#{name} = #{setter_value};
 
-    return #{to_mrb_value("value")};
+    return #{setter_return};
 }
     EOS
   end
@@ -104,6 +104,24 @@ mrb_raylib_#{declare_type.lower_name}_set_#{name}(mrb_state *mrb, mrb_value self
       "mrb_raylib_#{type.downcase}_to_mrb(mrb, #{value})"
     else
       raise type
+    end
+  end
+
+  def setter_value
+    case type
+    when *raylib_objects
+      "*(#{type}*)DATA_PTR(value)"
+    else
+      "value"
+    end
+  end
+
+  def setter_return
+    case type
+    when *raylib_objects
+      "value"
+    else
+      to_mrb_value("value")
     end
   end
 end
