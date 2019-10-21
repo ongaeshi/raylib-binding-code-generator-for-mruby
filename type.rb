@@ -65,4 +65,21 @@ mrb_raylib_#{lower_name}_initialize(mrb_state *mrb, mrb_value self)
     }
     EOS
   end
+
+  def ruby_content
+    <<-EOS
+class #{name}
+  def self.init(#{@fields.map { |e| e.name }.join(", ")})
+    o = #{name}.new
+#{ruby_content_assignment}    o
+  end
+end
+    EOS
+  end
+
+  def ruby_content_assignment
+    @fields.map do |e|
+      "    o.#{e.name} = #{e.name}\n"
+    end.join("")
+  end
 end

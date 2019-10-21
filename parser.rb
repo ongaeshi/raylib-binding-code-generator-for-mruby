@@ -70,4 +70,11 @@ void mrb_raylib_module_init(mrb_state *mrb)
 }
     EOS
   end
+
+  def ruby_content
+    @elems
+    .find_all { |e| e.is_a?(Type) }
+    .map { |e| e.ruby_content }
+    .join("\n")
+  end
 end
