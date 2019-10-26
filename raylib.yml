@@ -336,7 +336,7 @@
 # Camera System Functions (Module: camera)
 #------------------------------------------------------------------------------------
 - name: void SetCameraMode(Camera3D camera, int mode);                            # Set camera mode (multiple camera modes available)
-# - name: void UpdateCamera(Camera3D* camera);                                      # Update camera position for selected mode
+- name: void UpdateCamera(Camera3D* camera);                                      # Update camera position for selected mode
             
 - name: void SetCameraPanControl(int panKey);                                   # Set camera pan key to combine with mouse movement (free camera)
 - name: void SetCameraAltControl(int altKey);                                   # Set camera alt key to combine with mouse movement (free camera)

@@ -53,6 +53,8 @@ mrb_raylib_#{declare_type.lower_name}_set_#{name}(mrb_state *mrb, mrb_value self
       "S"
     when *raylib_objects
       "o"
+    when *raylib_objects_ptr
+      "o"
     else
       raise type
     end
@@ -69,6 +71,8 @@ mrb_raylib_#{declare_type.lower_name}_set_#{name}(mrb_state *mrb, mrb_value self
     when "const char*"
       "mrb_value"
     when *raylib_objects
+      "mrb_value"
+    when *raylib_objects_ptr
       "mrb_value"
     else
       raise type
@@ -87,6 +91,8 @@ mrb_raylib_#{declare_type.lower_name}_set_#{name}(mrb_state *mrb, mrb_value self
       "RSTRING_PTR(#{name})"
     when *raylib_objects
       "*(#{type}*)DATA_PTR(#{name})"
+    when *raylib_objects_ptr
+      "(#{type})DATA_PTR(#{name})"
     else
       raise type
     end
