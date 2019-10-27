@@ -77,4 +77,11 @@ void mrb_raylib_module_init(mrb_state *mrb)
     .map { |e| e.ruby_content }
     .join("\n")
   end
+
+  def convert_raylib_example(src)
+    src
+    .gsub("\t", "  ")
+    .gsub("//", "#")
+    .gsub(/(\d+\.\d+)f/, '\1')
+  end
 end
