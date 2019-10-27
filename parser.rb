@@ -79,9 +79,17 @@ void mrb_raylib_module_init(mrb_state *mrb)
   end
 
   def convert_raylib_example(src)
-    src
+    convert_function_name(src)
     .gsub("\t", "  ")
     .gsub("//", "#")
     .gsub(/(\d+\.\d+)f/, '\1')
+  end
+
+  def convert_function_name(src)
+    @elems
+    .find_all { |e| e.is_a?(Function) }
+    .map { |e| src = src.gsub(/\b#{e.c_name}\b/, e.ruby_name) }
+
+    src
   end
 end
