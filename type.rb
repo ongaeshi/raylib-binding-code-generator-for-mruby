@@ -1,4 +1,4 @@
-require_relative 'field'
+require_relative "field"
 
 class Type
   attr_reader :name, :lower_name

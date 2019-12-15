@@ -1,6 +1,6 @@
-require 'open-uri'
-require 'yaml'
-require_relative 'parser'
+require "open-uri"
+require "yaml"
+require_relative "parser"
 
 if $0 == __FILE__
   yml, url = ARGV

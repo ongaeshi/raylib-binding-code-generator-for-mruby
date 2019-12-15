@@ -1,5 +1,5 @@
-require_relative 'raylib-binding-code-generator-for-mruby'
-require 'test/unit'
+require_relative "raylib-binding-code-generator-for-mruby"
+require "test/unit"
 
 class ParserTest < Test::Unit::TestCase
   def test_header_content
@@ -70,7 +70,7 @@ void mrb_raylib_module_init(mrb_state *mrb)
     - unsigned char b;
     - unsigned char a;
   EOS
-    )
+)
 
     expected = <<-EOS
 #include "mrb_raylib.h"
@@ -229,7 +229,7 @@ class TypeTest < Test::Unit::TestCase
     assert_equal "unsigned char", t.fields[0].type
     assert_equal "r", t.fields[0].name
   end
-end 
+end
 
 class FieldTest < Test::Unit::TestCase
   def test_float_field
@@ -367,6 +367,7 @@ class CaseninjaTest < Test::Unit::TestCase
   def test_clear_background_to_snake_case
     assert_equal "clear_background", Caseninja.to_snake("ClearBackground")
   end
+
   def test_fps_to_snake_case
     assert_equal "get_fps", Caseninja.to_snake("GetFPS")
   end

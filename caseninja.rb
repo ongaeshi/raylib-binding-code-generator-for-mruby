@@ -31,7 +31,7 @@ module Caseninja
   def to_upchain(text)
     to_chain(text).upcase
   end
-  
+
   def to_upsnake(text)
     to_snake(text).upcase
   end
@@ -47,5 +47,4 @@ module Caseninja
       text.gsub(/([a-z])([A-Z])/, "\\1 \\2").downcase
     end
   end
-  
 end

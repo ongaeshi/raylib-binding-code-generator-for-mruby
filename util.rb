@@ -22,8 +22,8 @@ RAYLIB_OBJECTS = %w(
   BoneInfo
   ModelAnimation
   Ray
-  RayHitInfo      
-  BoundingBox     
+  RayHitInfo
+  BoundingBox
   Wave
   Sound
   Music

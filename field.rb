@@ -1,4 +1,4 @@
-require_relative 'util'
+require_relative "util"
 
 class Field
   attr_reader :type, :name

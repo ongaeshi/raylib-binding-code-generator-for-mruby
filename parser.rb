@@ -1,5 +1,5 @@
-require_relative 'type'
-require_relative 'function'
+require_relative "type"
+require_relative "function"
 
 class Parser
   def initialize(src)
@@ -73,22 +73,22 @@ void mrb_raylib_module_init(mrb_state *mrb)
 
   def ruby_content
     @elems
-    .find_all { |e| e.is_a?(Type) }
-    .map { |e| e.ruby_content }
-    .join("\n")
+      .find_all { |e| e.is_a?(Type) }
+      .map { |e| e.ruby_content }
+      .join("\n")
   end
 
   def convert_raylib_example(src)
     convert_function_name(src)
-    .gsub("\t", "  ")
-    .gsub("//", "#")
-    .gsub(/(\d+\.\d+)f/, '\1')
+      .gsub("\t", "  ")
+      .gsub("//", "#")
+      .gsub(/(\d+\.\d+)f/, '\1')
   end
 
   def convert_function_name(src)
     @elems
-    .find_all { |e| e.is_a?(Function) }
-    .map { |e| src = src.gsub(/\b#{e.c_name}\b/, e.ruby_name) }
+      .find_all { |e| e.is_a?(Function) }
+      .map { |e| src = src.gsub(/\b#{e.c_name}\b/, e.ruby_name) }
 
     src
   end
