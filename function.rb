@@ -32,7 +32,7 @@ class Function
   def impl_header
     <<-EOS
 static mrb_value
-mrb_raylib_#{ruby_name}(mrb_state *mrb, mrb_value self)
+mrb_func_raylib_#{ruby_name}(mrb_state *mrb, mrb_value self)
 {
 #{get_args}
 
@@ -71,7 +71,7 @@ mrb_raylib_#{ruby_name}(mrb_state *mrb, mrb_value self)
   end
 
   def impl_content
-    "    mrb_define_module_function(mrb, mod_raylib, \"#{ruby_name}\", mrb_raylib_#{ruby_name}, #{mrb_args});"
+    "    mrb_define_module_function(mrb, mod_raylib, \"#{ruby_name}\", mrb_func_raylib_#{ruby_name}, #{mrb_args});"
   end
 
   def mrb_args
