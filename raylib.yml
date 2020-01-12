@@ -401,7 +401,7 @@
 - name: void ExportImageAsCode(Image image, const char* fileName);                                          # Export image as code file defining an array of bytes
 - name: Texture2D LoadTexture(const char* fileName);                                                        # Load texture from file into GPU memory (VRAM)
 - name: Texture2D LoadTextureFromImage(Image image);                                                        # Load texture from image data
-# - name: TextureCubemap LoadTextureCubemap(Image image, int layoutType);                                     # Load cubemap from image, multiple image cubemap layouts supported
+- name: Texture2D LoadTextureCubemap(Image image, int layoutType);                                     # Load cubemap from image, multiple image cubemap layouts supported
 - name: RenderTexture2D LoadRenderTexture(int width, int height);                                           # Load texture for rendering (framebuffer)
 - name: void UnloadImage(Image image);                                                                      # Unload image from CPU memory (RAM)
 - name: void UnloadTexture(Texture2D texture);                                                              # Unload texture from GPU memory (VRAM)
