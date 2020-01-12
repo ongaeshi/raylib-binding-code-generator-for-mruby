@@ -224,7 +224,7 @@
 - name: void EndMode2D(void);                                                   # Ends 2D mode with custom camera
 - name: void BeginMode3D(Camera3D camera);                                      # Initializes 3D mode with custom camera (3D)
 - name: void EndMode3D(void);                                                   # Ends 3D mode and returns to default 2D orthographic mode
-# - name: void BeginTextureMode(RenderTexture2D target);                          # Initializes render texture for drawing
+- name: void BeginTextureMode(RenderTexture2D target);                          # Initializes render texture for drawing
 - name: void EndTextureMode(void);                                              # Ends drawing to render texture
 
 # Screen-space-related functions           
